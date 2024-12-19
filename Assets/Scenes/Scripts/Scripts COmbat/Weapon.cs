@@ -15,3 +15,5 @@ public void Fire()
     bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
 }
 }
+
+
