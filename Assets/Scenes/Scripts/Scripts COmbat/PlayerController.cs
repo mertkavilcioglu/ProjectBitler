@@ -4,45 +4,64 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    [Header("Components")]
     public Rigidbody2D rb;
-    public Weapon weaponLeft;  
-    public Weapon weaponRight; 
+    public Animator animator;
 
-    Vector2 moveDirection;
-    Vector2 mousePosition;
-
-    private float nextFireTime = 0.5f; 
-
-    void Update()
+    [Header("Game Play")]
+    public float speed;
+    private Vector2 movement;
+    public int playerHealth = 3;
+    void Start()
     {
         
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+    }
 
-        
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    void Update()
+    {    
 
-        
-        moveDirection = new Vector2(moveX, moveY).normalized;
+        FlipCharacter();
 
-        
-        if (Time.time >= nextFireTime)
-        {
-            nextFireTime = Time.time + 0.5f; 
 
-            
-            weaponRight.Fire();
+        movement.x = Input.GetAxis("Horizontal");
+        movement.y = Input.GetAxis("Vertical");
 
-            
-            weaponLeft.Fire();
+        rb.velocity = new Vector2(
+            movement.x * speed,
+            movement.y * speed
+        );
+
+        runAnim();
+    }
+
+    private void runAnim() {
+        if(movement.x != 0 || movement.y != 0) {
+            animator.SetBool("IsRunning", true);
+        }
+        else {
+            animator.SetBool("IsRunning", false);
         }
     }
 
-    void FixedUpdate()
+ void FlipCharacter()
     {
         
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        
+        Vector3 playerPosition = transform.position;
+
+        
+        if (mousePosition.x > playerPosition.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0); 
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0); 
+        }
     }
+
+
 }
 
