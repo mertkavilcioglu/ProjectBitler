@@ -14,7 +14,7 @@ public class Gun : MonoBehaviour
     [Header("Shooting Settings")]
     public float fireRate = 0.5f;   
     private float nextFireTime = 0f;
-
+private bool isShooting = false;
     void Update()
     {
         
@@ -36,11 +36,20 @@ public class Gun : MonoBehaviour
             nextFireTime = Time.time + fireRate; 
             Shoot();
         }
+
+        if(Input.GetMouseButton(0))
+        {
+            isShooting=true;
+        }
+        else
+        {
+            isShooting=false;
+        }
     }
 
     private void Shoot()
     {
-        
+        if(isShooting==true)
         Instantiate(bullet, firePoint.position, transform.rotation);
     }
 }
