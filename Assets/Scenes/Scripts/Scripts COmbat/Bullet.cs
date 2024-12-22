@@ -14,19 +14,25 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        
         rb.velocity = transform.right * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       if(collision.gameObject.CompareTag("Player")!=true)
-        Destroy(gameObject);
+        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
+        {
+            enemyComponent.TakeDamage(1); 
+            Destroy(gameObject);         
+        }
+        else if (!collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);         
+        }
     }
 
     private void OnBecameInvisible()
     {
-        
         Destroy(gameObject);
     }
 }
+
