@@ -17,18 +17,18 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.right * speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+   private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth enemyHealth))
     {
-        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
-        {
-            enemyComponent.TakeDamage(1); 
-            Destroy(gameObject);         
-        }
-        else if (!collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);         
-        }
+        enemyHealth.TakeDamage(1); // Mermi 1 hasar veriyor
+        Destroy(gameObject);         
     }
+    else if (!collision.gameObject.CompareTag("Player"))
+    {
+        Destroy(gameObject);         
+    }
+}
 
     private void OnBecameInvisible()
     {
