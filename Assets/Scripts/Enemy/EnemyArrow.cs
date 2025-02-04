@@ -38,4 +38,9 @@ public class EnemyArrow : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
