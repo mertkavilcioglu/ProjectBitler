@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
 {
     if (collision.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth enemyHealth))
     {
-        enemyHealth.TakeDamage(1); // Mermi 1 hasar veriyor
+        enemyHealth.TakeDamage(20); // Mermi 1 hasar veriyor
         Destroy(gameObject);         
     }
     else if (!collision.gameObject.CompareTag("Player"))

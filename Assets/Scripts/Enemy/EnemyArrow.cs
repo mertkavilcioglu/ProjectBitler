@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyArrow : MonoBehaviour
 {
     public float force;
-    public int damage = 1; // Okun vereceği hasar miktarı
+    public int damage = 15; // Okun vereceği hasar miktarı
 
     private Rigidbody2D rb;
 

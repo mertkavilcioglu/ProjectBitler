@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 5
-  damage: 1
+  damage: 15
 --- !u!70 &-6167719369272857446
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class MeleeEnemyMovement : MonoBehaviour
     public float detectionRange = 10f;
     public float attackRange = 1f;
     public float attackCooldown = 1f;
-    public int damage = 1; // Melee enemy'nin vereceği hasar
+    public int damage = 10; // Melee enemy'nin vereceği hasar
 
     private Transform playerPos;
     public float speed;

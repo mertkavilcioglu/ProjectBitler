@@ -3,18 +3,51 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    public int maxHealth = 3;
+    [Tooltip("Oyuncunun maksimum can değeri (Inspector üzerinden değiştirilebilir).")]
+    public int maxHealth = 100;
     private int currentHealth;
 
-    private void Awake()
+    [Header("Health Bar UI")]
+    [Tooltip("Health bar prefab’ı (Border, Background, Fill içeren prefab).")]
+    public GameObject healthBarPrefab;
+    [Tooltip("Health bar’ın oyuncuya göre ofseti (örneğin, (0, 1, 0))")]
+    public Vector3 healthBarOffset;
+
+    private HealthBar healthBarInstance;
+
+    private void Start()
     {
         currentHealth = maxHealth;
+        // Sahnedeki Canvas’ı bulup health bar prefab’ını oraya instantiate ediyoruz.
+        if (healthBarPrefab != null)
+        {
+            Canvas canvas = FindObjectOfType<Canvas>();
+            if (canvas != null)
+            {
+                GameObject hb = Instantiate(healthBarPrefab, canvas.transform);
+                healthBarInstance = hb.GetComponent<HealthBar>();
+                if (healthBarInstance != null)
+                {
+                    healthBarInstance.SetTarget(transform);
+                    healthBarInstance.offset = healthBarOffset;
+                    healthBarInstance.SetFillAmount(1f); // Tam dolu başlangıç
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Sahnede Canvas bulunamadı!");
+            }
+        }
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log("Player " + damage + " hasar aldı. Kalan can: " + currentHealth);
+        float fillAmount = (float)currentHealth / maxHealth;
+        if (healthBarInstance != null)
+        {
+            healthBarInstance.SetFillAmount(fillAmount);
+        }
 
         if (currentHealth <= 0)
         {
@@ -24,8 +57,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Player öldü.");
-        // Ölüm sonrası yapılacak işlemler  buraya ekle aşko
+        if (healthBarInstance != null)
+        {
+            Destroy(healthBarInstance.gameObject);
+        }
         Destroy(gameObject);
     }
 }
