@@ -232,7 +232,6 @@ GameObject:
   - component: {fileID: 4316213691594595365}
   - component: {fileID: 4316213691594595371}
   - component: {fileID: 8066237004392531413}
-  - component: {fileID: 424801070}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -254,6 +253,7 @@ Transform:
   m_Children:
   - {fileID: 4316213691343618802}
   - {fileID: 1538570416}
+  - {fileID: 2578933279476605360}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -406,18 +406,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
---- !u!114 &424801070
-MonoBehaviour:
+  healthBarPrefab: {fileID: 2578933279476605361}
+  healthBarOffset: {x: -1.5, y: 2, z: 0}
+--- !u!1001 &2020063535
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4316213691594595366}
+    m_Modifications:
+    - target: {fileID: 2578933278270904478, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_Name
+      value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25.320147
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2079115
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+--- !u!4 &2578933279476605360 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+  m_PrefabInstance: {fileID: 2020063535}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4316213691594595361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a02b7eaf84106d446a5d067b620b9ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  backgroundImage: {fileID: 0}
-  fillImage: {fileID: 0}
+--- !u!1 &2578933279476605361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2578933278270904478, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+  m_PrefabInstance: {fileID: 2020063535}
+  m_PrefabAsset: {fileID: 0}
