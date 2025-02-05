@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     public Vector3 healthBarOffset;
 
     private HealthBar healthBarInstance;
+    public Animator animator;
 
     private void Start()
     {
@@ -61,6 +62,9 @@ public class PlayerHealth : MonoBehaviour
         {
             Destroy(healthBarInstance.gameObject);
         }
+
+        animator.SetBool("IsDead", true);
+
         Destroy(gameObject);
     }
 }
