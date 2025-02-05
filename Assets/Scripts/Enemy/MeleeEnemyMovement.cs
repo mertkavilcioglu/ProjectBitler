@@ -28,16 +28,6 @@ public class MeleeEnemyMovement : MonoBehaviour
     {
         float distanceToPlayer = Vector2.Distance(transform.position, playerPos.position);
 
-        // Yüz yönünü oyuncuya doğru çevir
-        if (playerPos.position.x < transform.position.x)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else
-        {
-            spriteRenderer.flipX = false;
-        }
-
         if (distanceToPlayer > attackRange)
         {
             // Oyuncu saldırı mesafesinde değilse enemy yürüyüş animasyonunu oynatsın
@@ -47,7 +37,7 @@ public class MeleeEnemyMovement : MonoBehaviour
                 playerPos.position,
                 speed * Time.deltaTime
             );
-            animator.Play("Base Layer.Enemy_Walk");
+            animator.Play("Base Layer.enemy1_walk");
         }
         else
         {
@@ -63,7 +53,7 @@ public class MeleeEnemyMovement : MonoBehaviour
 
     void AttackPlayer()
     {
-        animator.Play("Base Layer.Enemy_Attack");
+        animator.Play("Base Layer.enemy1_attack");
         Debug.Log("Enemy saldırıyor!");
 
         // Oyuncuya hasar ver

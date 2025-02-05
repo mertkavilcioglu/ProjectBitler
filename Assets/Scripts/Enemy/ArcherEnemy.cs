@@ -32,15 +32,6 @@ public class ArcherEnemy : MonoBehaviour
     {
         float distanceToPlayer = Vector2.Distance(transform.position, playerPos.position);
 
-        if (playerPos.position.x < transform.position.x)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else
-        {
-            spriteRenderer.flipX = false;
-        }
-
         if (distanceToPlayer > attackRange)
         {
             isInAttackRange = false;
@@ -49,7 +40,7 @@ public class ArcherEnemy : MonoBehaviour
                 playerPos.position,
                 speed * Time.deltaTime
             );
-            animator.Play("Base Layer.Archer_Walk");
+            animator.Play("Base Layer.enemy2_walk");
         }
         else
         {
@@ -59,7 +50,7 @@ public class ArcherEnemy : MonoBehaviour
 
         void StartAttack()
         {
-            animator.Play("Base Layer.Archer_Attack");
+            animator.Play("Base Layer.enemy2_attack");
             Debug.Log("Enemy is attacking!");
 
             // Reset attacking flag after animation length
