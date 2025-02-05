@@ -81,11 +81,11 @@ public class FriendlySoldier : MonoBehaviour
         animator.Play("Base Layer.Friendly_Attack");
 
         // Hedef düşmana hasar ver
-        //Enemy enemyHealth = targetEnemy.GetComponent<Enemy>();
-       // if (enemyHealth != null)
-       // {
-        //    enemyHealth.TakeDamage(damage);
-       // }
+        Enemy enemyHealth = targetEnemy.GetComponent<Enemy>();
+        if (enemyHealth != null)
+        {
+            enemyHealth.TakeDamage(damage);
+        }
 
         // Saldırı animasyonu süresi kadar bekleyip saldır bayrağını sıfırla
         float attackAnimationLength = animator.GetCurrentAnimatorStateInfo(0).length;
