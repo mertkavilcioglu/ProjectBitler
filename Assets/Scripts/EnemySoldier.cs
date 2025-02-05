@@ -80,7 +80,7 @@ public class EnemySoldier : MonoBehaviour
         FriendlySoldier friendlyHealth = targetFriendly.GetComponent<FriendlySoldier>();
         if (friendlyHealth != null)
         {
-            friendlyHealth.TakeDamage(damage);
+            //friendlyHealth.TakeDamage(damage);
         }
 
         float attackAnimationLength = animator.GetCurrentAnimatorStateInfo(0).length;
