@@ -8,8 +8,6 @@ TagManager:
   - Bullet
   - Enemy
   - EnemyProjectile
-  - Friendly
-  - FriendlyProjectile
   layers:
   - Default
   - TransparentFX
@@ -20,8 +18,8 @@ TagManager:
   - Bullet
   - Enemy
   - EnemyProjectile
-  - Friendly
-  - FriendlyProjectile
+  - 
+  - 
   - 
   - 
   - 
