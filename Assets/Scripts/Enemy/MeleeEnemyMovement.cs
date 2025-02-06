@@ -5,12 +5,14 @@ using UnityEngine;
 public class MeleeEnemyMovement : MonoBehaviour
 {
     [Header("Detection & Attack Settings")]
-    public float detectionRange = 10f;
+    public float playerDetectionRange = 5f;
+    public float yeniceriDetectionRange = 30f;
     public float attackRange = 1f;
     public float attackCooldown = 1f;
-    public int damage = 10; // Melee enemy'nin vereceği hasar
+    public int damage = 10;
 
     private Transform playerPos;
+    private Transform currentTarget;
     public float speed;
     private float lastAttackTime;
     private bool isAttacking = false;
@@ -24,44 +26,95 @@ public class MeleeEnemyMovement : MonoBehaviour
 
     void Update()
     {
+        // First check if player is in range (priority target)
         float distanceToPlayer = Vector2.Distance(transform.position, playerPos.position);
 
-        if (distanceToPlayer > attackRange)
+        if (distanceToPlayer <= playerDetectionRange)
         {
-            // Oyuncu saldırı mesafesinde değilse enemy yürüyüş animasyonunu oynatsın
+            currentTarget = playerPos;
+        }
+        else
+        {
+            // Player not in range, look for Yeniceri
+            FindNearestYeniceri();
+        }
+
+        if (currentTarget == null) return;
+
+        float distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
+        if (distanceToTarget > attackRange)
+        {
             isAttacking = false;
+
+            // Calculate position on a circle around the target
+            float angle = Time.time * speed + transform.GetInstanceID(); // Unique for each unit
+            float circleRadius = attackRange + 0.5f; // Slightly larger than attack range
+            Vector2 offset = new Vector2(
+                Mathf.Cos(angle) * circleRadius,
+                Mathf.Sin(angle) * circleRadius
+            );
+
+            Vector2 targetPosition = (Vector2)currentTarget.position + offset;
+
             transform.position = Vector2.MoveTowards(
                 transform.position,
-                playerPos.position,
+                targetPosition,
                 speed * Time.deltaTime
             );
             animator.Play("Base Layer.enemy1_walk");
         }
         else
         {
-            // Oyuncu saldırı mesafesinde ve saldırı soğuma süresi dolmuşsa saldır
             if (!isAttacking && Time.time - lastAttackTime > attackCooldown)
             {
                 isAttacking = true;
                 lastAttackTime = Time.time;
-                AttackPlayer();
+                AttackTarget();
             }
         }
     }
 
-    void AttackPlayer()
+    void FindNearestYeniceri()
     {
-        animator.Play("Base Layer.enemy1_attack");
-        Debug.Log("Enemy saldırıyor!");
+        GameObject[] yeniceris = GameObject.FindGameObjectsWithTag("FriendSoldier");
+        float nearestDistance = Mathf.Infinity;
+        Transform nearestYeniceri = null;
 
-        // Oyuncuya hasar ver
-        PlayerHealth playerHealth = playerPos.GetComponent<PlayerHealth>();
-        if (playerHealth != null)
+        foreach (GameObject yeniceri in yeniceris)
         {
-            playerHealth.TakeDamage(damage);
+            float distance = Vector2.Distance(transform.position, yeniceri.transform.position);
+            if (distance < nearestDistance && distance <= yeniceriDetectionRange)
+            {
+                nearestDistance = distance;
+                nearestYeniceri = yeniceri.transform;
+            }
         }
 
-        // Saldırı animasyonu süresi kadar bekleyip saldır bayrağını resetle
+        currentTarget = nearestYeniceri;
+    }
+
+    void AttackTarget()
+    {
+        animator.Play("Base Layer.enemy1_attack");
+        //Debug.Log($"Enemy saldırıyor: {currentTarget.name}!");
+
+        if (currentTarget == playerPos)
+        {
+            PlayerHealth playerHealth = currentTarget.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage);
+            }
+        }
+        else
+        {
+            YeniceriHealth yeniceriHealth = currentTarget.GetComponent<YeniceriHealth>();
+            if (yeniceriHealth != null)
+            {
+                yeniceriHealth.TakeDamage(damage);
+            }
+        }
+
         float attackAnimationLength = animator.GetCurrentAnimatorStateInfo(0).length;
         Invoke("ResetAttack", attackAnimationLength);
     }

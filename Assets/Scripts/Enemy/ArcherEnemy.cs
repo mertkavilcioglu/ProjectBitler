@@ -1,16 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ArcherEnemy : MonoBehaviour
 {
-    public float detectionRange = 1f;
+    public float playerDetectionRange = 8f;
+    public float yeniceriDetectionRange = 10f;
     public float attackRange = 1f;
     public float attackCooldown = 1f;
-
     private Transform playerPos;
+    public Transform currentTarget;
     public float speed;
     private float lastAttackTime;
     private bool isInAttackRange = false;
@@ -22,22 +19,32 @@ public class ArcherEnemy : MonoBehaviour
     void Start()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
     }
 
     void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, playerPos.position);
 
-        if (distanceToPlayer > attackRange)
+        if (distanceToPlayer <= playerDetectionRange)
+        {
+            currentTarget = playerPos;
+        }
+        else
+        {
+            FindNearestYeniceri();
+        }
+
+        if (currentTarget == null) return;
+
+        float distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
+        if (distanceToTarget > attackRange)
         {
             isInAttackRange = false;
             transform.position = Vector2.MoveTowards(
                 transform.position,
-                playerPos.position,
+                currentTarget.position,
                 speed * Time.deltaTime
             );
             animator.Play("Base Layer.enemy2_walk");
@@ -47,20 +54,37 @@ public class ArcherEnemy : MonoBehaviour
             isInAttackRange = true;
             StartAttack();
         }
+    }
 
-        void StartAttack()
+    void FindNearestYeniceri()
+    {
+        GameObject[] yeniceris = GameObject.FindGameObjectsWithTag("Friendly");
+        float nearestDistance = Mathf.Infinity;
+        Transform nearestYeniceri = null;
+
+        foreach (GameObject yeniceri in yeniceris)
         {
-            animator.Play("Base Layer.enemy2_attack");
-            Debug.Log("Enemy is attacking!");
-
-            // Reset attacking flag after animation length
-            float attackAnimationLength = animator.GetCurrentAnimatorStateInfo(0).length;
-            Invoke("ResetAttack", attackAnimationLength);
+            float distance = Vector2.Distance(transform.position, yeniceri.transform.position);
+            if (distance < nearestDistance && distance <= yeniceriDetectionRange)
+            {
+                nearestDistance = distance;
+                nearestYeniceri = yeniceri.transform;
+            }
         }
 
-        void ResetAttack()
-        {
-            isAttacking = false;
-        }
+        currentTarget = nearestYeniceri;
+    }
+
+    void StartAttack()
+    {
+        animator.Play("Base Layer.enemy2_attack");
+        Debug.Log("Enemy is attacking!");
+        float attackAnimationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        Invoke("ResetAttack", attackAnimationLength);
+    }
+
+    void ResetAttack()
+    {
+        isAttacking = false;
     }
 }

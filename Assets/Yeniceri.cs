@@ -8,56 +8,91 @@ public class Yeniceri : MonoBehaviour
     public float attackRange = 1f;
     public float attackCooldown = 1f;
     public int damage = 10;
-
-    private Transform enemyPos;
+    public Animator animator;
+    private Transform currentTarget;
     public float speed;
     private float lastAttackTime;
     private bool isAttacking = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        enemyPos = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Transform>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        float distanceToEnemy = Vector2.Distance(transform.position, enemyPos.position);
+        // Find nearest enemy if we don't have a target or current target is destroyed
+        if (currentTarget == null)
+        {
+            FindNearestEnemy();
+            // Reset animation if no target found
+            if (currentTarget == null)
+            {
+                animator.SetBool("IsWalking", false);
+                animator.SetBool("IsAttacking", false);
+                isAttacking = false;
+                return;
+            }
+        }
+
+        float distanceToEnemy = Vector2.Distance(transform.position, currentTarget.position);
+
+        // Check if enemy is within detection range
+        if (distanceToEnemy > detectionRange)
+        {
+            // Enemy too far, look for a closer one
+            FindNearestEnemy();
+            return;
+        }
 
         if (distanceToEnemy > attackRange)
         {
             isAttacking = false;
+            animator.SetBool("IsAttacking", false);
+            animator.SetBool("IsWalking", true);
             transform.position = Vector2.MoveTowards(
                 transform.position,
-                enemyPos.position,
+                currentTarget.position,
                 speed * Time.deltaTime
             );
         }
         else
         {
-            // Oyuncu saldýrý mesafesinde ve saldýrý soðuma süresi dolmuþsa saldýr
             if (!isAttacking && Time.time - lastAttackTime > attackCooldown)
             {
+                animator.SetBool("IsWalking", false);
                 isAttacking = true;
                 lastAttackTime = Time.time;
                 AttackEnemy();
             }
         }
+    }
 
+    void FindNearestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float nearestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector2.Distance(transform.position, enemy.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestEnemy = enemy;
+            }
+        }
+
+        currentTarget = nearestEnemy?.transform;
     }
 
     void AttackEnemy()
     {
-        Debug.Log("Yeniceri saldýrýyor!");
+        if (currentTarget == null) return;
 
-        // Oyuncuya hasar ver
-        EnemyHealth enemyHealth = enemyPos.GetComponent<EnemyHealth>();
+        Debug.Log("Yeniceri saldýrýyor!");
+        animator.SetBool("IsAttacking", true);
+
+        EnemyHealth enemyHealth = currentTarget.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(damage);
         }
-
-        //Invoke("ResetAttack", attackAnimationLength);
     }
 }

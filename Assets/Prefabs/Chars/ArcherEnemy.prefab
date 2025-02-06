@@ -211,9 +211,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8814322057949814711}
     m_Modifications:
+    - target: {fileID: 2578933278040494078, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278218776515, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2578933278270904478, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278270904478, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
       propertyPath: m_RootOrder
@@ -258,6 +270,10 @@ PrefabInstance:
     - target: {fileID: 2578933278270904479, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578933278630405613, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
