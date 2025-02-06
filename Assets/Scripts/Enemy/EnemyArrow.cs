@@ -39,7 +39,7 @@ public class EnemyArrow : MonoBehaviour
                 playerHealth.TakeDamage(damage);
             }
         }
-        else if (collision.gameObject.CompareTag("Friendly"))
+        else if (collision.gameObject.CompareTag("FriendSoldier"))
         {
             EnemyHealth yeniceriHealth = collision.gameObject.GetComponent<EnemyHealth>();
             if (yeniceriHealth != null)

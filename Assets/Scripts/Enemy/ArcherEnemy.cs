@@ -58,7 +58,7 @@ public class ArcherEnemy : MonoBehaviour
 
     void FindNearestYeniceri()
     {
-        GameObject[] yeniceris = GameObject.FindGameObjectsWithTag("Friendly");
+        GameObject[] yeniceris = GameObject.FindGameObjectsWithTag("FriendSoldier");
         float nearestDistance = Mathf.Infinity;
         Transform nearestYeniceri = null;
 
