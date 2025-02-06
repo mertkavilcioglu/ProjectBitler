@@ -41,7 +41,7 @@ public class EnemyArrow : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("FriendSoldier"))
         {
-            EnemyHealth yeniceriHealth = collision.gameObject.GetComponent<EnemyHealth>();
+            YeniceriHealth yeniceriHealth = collision.gameObject.GetComponent<YeniceriHealth>();
             if (yeniceriHealth != null)
             {
                 yeniceriHealth.TakeDamage(damage);
