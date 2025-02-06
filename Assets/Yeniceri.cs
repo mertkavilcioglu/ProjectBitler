@@ -94,5 +94,16 @@ public class Yeniceri : MonoBehaviour
         {
             enemyHealth.TakeDamage(damage);
         }
+
+        // Add this to reset the attack state
+        StartCoroutine(ResetAttackState());
+    }
+
+    IEnumerator ResetAttackState()
+    {
+        // Wait for attack animation to complete
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        animator.SetBool("IsAttacking", false);
+        isAttacking = false;
     }
 }
