@@ -1,25 +1,24 @@
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class YeniceriHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    [Tooltip("Oyuncunun maksimum can değeri (Inspector üzerinden değiştirilebilir).")]
     public int maxHealth = 100;
     private int currentHealth;
 
     [Header("Health Bar UI")]
-    [Tooltip("Health bar prefab’ı (Border, Background, Fill içeren prefab).")]
     public GameObject healthBarPrefab;
-    [Tooltip("Health bar’ın oyuncuya göre ofseti (örneğin, (0, 1, 0))")]
     public Vector3 healthBarOffset;
 
     private HealthBar healthBarInstance;
-    public Animator animator;
+
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        // Sahnedeki Canvas’ı bulup health bar prefab’ını oraya instantiate ediyoruz.
         if (healthBarPrefab != null)
         {
             Canvas canvas = FindObjectOfType<Canvas>();
@@ -31,12 +30,12 @@ public class PlayerHealth : MonoBehaviour
                 {
                     healthBarInstance.SetTarget(transform);
                     healthBarInstance.offset = healthBarOffset;
-                    healthBarInstance.SetFillAmount(1f); // Tam dolu başlangıç
+                    healthBarInstance.SetFillAmount(1f);
                 }
             }
             else
             {
-                Debug.LogWarning("Sahnede Canvas bulunamadı!");
+                Debug.LogWarning("Sahnede Canvas bulunamad�!");
             }
         }
     }
@@ -50,6 +49,8 @@ public class PlayerHealth : MonoBehaviour
             healthBarInstance.SetFillAmount(fillAmount);
         }
 
+        Debug.Log(gameObject.name + " " + damage + " hasar ald�.");
+
         if (currentHealth <= 0)
         {
             Die();
@@ -62,9 +63,6 @@ public class PlayerHealth : MonoBehaviour
         {
             Destroy(healthBarInstance.gameObject);
         }
-
-        //animator.SetBool("IsDead", true);
-
         Destroy(gameObject);
     }
 }

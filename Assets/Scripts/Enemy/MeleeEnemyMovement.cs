@@ -15,13 +15,11 @@ public class MeleeEnemyMovement : MonoBehaviour
     private float lastAttackTime;
     private bool isAttacking = false;
     Animator animator;
-    SpriteRenderer spriteRenderer;
 
     void Start()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
