@@ -1,235 +1,94 @@
 {
   "dependencies": {
-    "com.unity.2d.animation": {
-      "version": "file:com.unity.2d.animation@7.0.10",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.2d.common": "6.0.6",
-        "com.unity.2d.sprite": "1.0.0",
-        "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.uielements": "1.0.0"
-      }
-    },
-    "com.unity.2d.common": {
-      "version": "file:com.unity.2d.common@6.0.6",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.2d.sprite": "1.0.0",
-        "com.unity.mathematics": "1.1.0",
-        "com.unity.modules.uielements": "1.0.0",
-        "com.unity.burst": "1.5.1"
-      }
-    },
-    "com.unity.2d.path": {
-      "version": "file:com.unity.2d.path@5.0.2",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.unity.2d.pixel-perfect": {
-      "version": "file:com.unity.2d.pixel-perfect@5.0.3",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.unity.2d.psdimporter": {
-      "version": "file:com.unity.2d.psdimporter@6.0.7",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.2d.animation": "7.0.9",
-        "com.unity.2d.common": "6.0.6",
-        "com.unity.2d.sprite": "1.0.0"
-      }
-    },
-    "com.unity.2d.sprite": {
-      "version": "file:com.unity.2d.sprite@1.0.0",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.unity.2d.spriteshape": {
-      "version": "file:com.unity.2d.spriteshape@7.0.7",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.mathematics": "1.1.0",
-        "com.unity.2d.common": "6.0.6",
-        "com.unity.2d.path": "5.0.2",
-        "com.unity.modules.physics2d": "1.0.0"
-      }
-    },
-    "com.unity.2d.tilemap": {
-      "version": "file:com.unity.2d.tilemap@1.0.0",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.unity.2d.tilemap.extras": {
-      "version": "file:com.unity.2d.tilemap.extras@2.2.5",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.modules.tilemap": "1.0.0",
-        "com.unity.2d.tilemap": "1.0.0",
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      }
-    },
-    "com.unity.burst": {
-      "version": "file:com.unity.burst@1.8.2",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.mathematics": "1.2.1"
-      }
-    },
-    "com.unity.cinemachine": {
-      "version": "file:com.unity.cinemachine@2.8.9",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.test-framework": "1.1.31"
-      }
-    },
     "com.unity.collab-proxy": {
-      "version": "file:com.unity.collab-proxy@2.0.3",
+      "version": "2.0.3",
       "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
     },
     "com.unity.ext.nunit": {
-      "version": "file:com.unity.ext.nunit@1.0.6",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.unity.feature.2d": {
-      "version": "1.0.0",
-      "depth": 0,
-      "source": "builtin",
-      "dependencies": {
-        "com.unity.2d.animation": "7.0.10",
-        "com.unity.2d.pixel-perfect": "5.0.3",
-        "com.unity.2d.psdimporter": "6.0.7",
-        "com.unity.2d.sprite": "1.0.0",
-        "com.unity.2d.spriteshape": "7.0.7",
-        "com.unity.2d.tilemap": "1.0.0",
-        "com.unity.2d.tilemap.extras": "2.2.5"
-      }
+      "version": "1.0.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "file:com.unity.ide.rider@3.0.18",
+      "version": "3.0.18",
       "depth": 0,
-      "source": "embedded",
+      "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6"
-      }
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "file:com.unity.ide.visualstudio@2.0.22",
+      "version": "2.0.17",
       "depth": 0,
-      "source": "embedded",
+      "source": "registry",
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
-      }
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.ide.vscode": {
-      "version": "file:com.unity.ide.vscode@1.2.5",
+      "version": "1.2.5",
       "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.unity.mathematics": {
-      "version": "file:com.unity.mathematics@1.2.6",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.unity.render-pipelines.core": {
-      "version": "file:com.unity.render-pipelines.core@12.1.11",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.physics": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      }
-    },
-    "com.unity.render-pipelines.universal": {
-      "version": "file:com.unity.render-pipelines.universal@12.1.11",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.mathematics": "1.2.1",
-        "com.unity.burst": "1.8.2",
-        "com.unity.render-pipelines.core": "12.1.11",
-        "com.unity.shadergraph": "12.1.11"
-      }
-    },
-    "com.unity.searcher": {
-      "version": "file:com.unity.searcher@4.9.1",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.unity.shadergraph": {
-      "version": "file:com.unity.shadergraph@12.1.11",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.render-pipelines.core": "12.1.11",
-        "com.unity.searcher": "4.9.1"
-      }
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "file:com.unity.test-framework@1.1.31",
+      "version": "1.1.31",
       "depth": 0,
-      "source": "embedded",
+      "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
-      }
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "file:com.unity.textmeshpro@3.0.6",
+      "version": "3.0.6",
       "depth": 0,
-      "source": "embedded",
+      "source": "registry",
       "dependencies": {
         "com.unity.ugui": "1.0.0"
-      }
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "file:com.unity.timeline@1.6.4",
+      "version": "1.6.4",
       "depth": 0,
-      "source": "embedded",
+      "source": "registry",
       "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.director": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0"
-      }
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.ugui": {
-      "version": "file:com.unity.ugui@1.0.0",
+      "version": "1.0.0",
       "depth": 0,
-      "source": "embedded",
+      "source": "builtin",
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
     },
     "com.unity.visualscripting": {
-      "version": "file:com.unity.visualscripting@1.8.0",
+      "version": "1.8.0",
       "depth": 0,
-      "source": "embedded",
+      "source": "registry",
       "dependencies": {
         "com.unity.ugui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
-      }
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

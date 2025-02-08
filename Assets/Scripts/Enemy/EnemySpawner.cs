@@ -28,9 +28,27 @@ public class EnemySpawner : MonoBehaviour
             enemies.RemoveAll(enemy => enemy == null);
             if (enemies.Count < MaxEnemyCount)
             {
-                GameObject newEnemy = Instantiate(Enemy, new Vector3(Random.Range(-5f, 5f), Random.Range(-6f, 6f), 0), Quaternion.identity);
+                Vector3 spawnPosition = GetSpawnPosition();
+                GameObject newEnemy = Instantiate(Enemy, spawnPosition, Quaternion.identity);
                 enemies.Add(newEnemy);
             }
         }
+    }
+
+    private Vector3 GetSpawnPosition()
+    {
+        // Ana kameranın sınırlarını al
+        Camera cam = Camera.main;
+        if (cam == null) return Vector3.zero;
+
+        // Kamera genişliği ve yüksekliği hesaplanır
+        float cameraHeight = 2f * cam.orthographicSize;
+        float cameraWidth = cameraHeight * cam.aspect;
+
+        // Sağ sınırın biraz dışında bir x pozisyonu belirle
+        float spawnX = cam.transform.position.x + cameraWidth / 2 + 1f; // Sağ sınırın hemen dışı
+        float spawnY = Random.Range(cam.transform.position.y - cameraHeight / 2, cam.transform.position.y + cameraHeight / 2); // Kamera yüksekliğinde rastgele bir y değeri
+
+        return new Vector3(spawnX, spawnY, 0); // Düzlemde spawn pozisyonu
     }
 }
