@@ -3,14 +3,14 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    [Tooltip("Oyuncunun maksimum can değeri (Inspector üzerinden değiştirilebilir).")]
+    
     public int maxHealth = 100;
     private int currentHealth;
 
     [Header("Health Bar UI")]
-    [Tooltip("Health bar prefab’ı (Border, Background, Fill içeren prefab).")]
+    
     public GameObject healthBarPrefab;
-    [Tooltip("Health bar’ın oyuncuya göre ofseti (örneğin, (0, 1, 0))")]
+    
     public Vector3 healthBarOffset;
 
     private HealthBar healthBarInstance;

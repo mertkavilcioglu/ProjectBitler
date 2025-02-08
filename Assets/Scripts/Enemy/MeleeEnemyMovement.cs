@@ -54,7 +54,7 @@ public class MeleeEnemyMovement : MonoBehaviour
     void AttackPlayer()
     {
         animator.Play("Base Layer.enemy1_attack");
-        Debug.Log("Enemy saldırıyor!");
+        Debug.Log("Atack Fener!");
 
         // Oyuncuya hasar ver
         PlayerHealth playerHealth = playerPos.GetComponent<PlayerHealth>();

@@ -3,14 +3,11 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    [Tooltip("Düşmanın maksimum canı (Inspector üzerinden değiştirilebilir).")]
-    public int maxHealth = 100;
+        public int maxHealth = 100;
     private int currentHealth;
 
     [Header("Health Bar UI")]
-    [Tooltip("Health bar prefab’ı (Border, Background, Fill içeren prefab).")]
     public GameObject healthBarPrefab;
-    [Tooltip("Health bar’ın düşmana göre ofseti (örneğin, (0, 1, 0))")]
     public Vector3 healthBarOffset;
 
     private HealthBar healthBarInstance;
@@ -38,7 +35,7 @@ public class EnemyHealth : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Sahnede Canvas bulunamadı!");
+                Debug.LogWarning("Sahnede Canvas yok!");
             }
         }
     }
@@ -52,7 +49,7 @@ public class EnemyHealth : MonoBehaviour
             healthBarInstance.SetFillAmount(fillAmount);
         }
 
-        Debug.Log(gameObject.name + " " + damage + " hasar aldı.");
+        Debug.Log(gameObject.name + " " + damage + " hasar aldi.");
 
         if (currentHealth <= 0)
         {

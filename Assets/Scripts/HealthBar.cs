@@ -3,10 +3,9 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    [Tooltip("Can barındaki doldurma görseli (Fill).")]
+    
     public Image fillImage;
 
-    [Tooltip("Hedef objeye göre ofset (örneğin, objenin üstünde görünmesi için).")]
     public Vector3 offset;
 
     private Transform target;
