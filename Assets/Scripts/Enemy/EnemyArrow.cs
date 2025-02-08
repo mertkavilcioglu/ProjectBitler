@@ -3,31 +3,34 @@ using UnityEngine;
 public class EnemyArrow : MonoBehaviour
 {
     public float force;
-    public int damage = 15; // Okun vereceği hasar miktarı
-
+    public int damage = 15;
     private Rigidbody2D rb;
+    private Transform target;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Player").transform;
 
-        if (player != null)
+        // Get archer's current target
+        ArcherEnemy archer = transform.parent?.GetComponent<ArcherEnemy>();
+        if (archer != null && archer.currentTarget != null)
         {
-            Vector3 direction = player.transform.position - transform.position;
+            target = archer.currentTarget;
+        }
+
+        if (target != null)
+        {
+            Vector3 direction = target.position - transform.position;
             rb.velocity = direction.normalized * force;
             float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, rot + 90);
-        }
-        else
-        {
-            Debug.LogWarning("Player bulunamadı!");
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Eğer ok oyuncuya çarparsa
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
@@ -36,6 +39,15 @@ public class EnemyArrow : MonoBehaviour
                 playerHealth.TakeDamage(damage);
             }
         }
+        else if (collision.gameObject.CompareTag("FriendSoldier"))
+        {
+            YeniceriHealth yeniceriHealth = collision.gameObject.GetComponent<YeniceriHealth>();
+            if (yeniceriHealth != null)
+            {
+                yeniceriHealth.TakeDamage(damage);
+            }
+        }
+
         Destroy(gameObject);
     }
 
