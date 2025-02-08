@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
 
     private List<GameObject> enemies = new List<GameObject>();
 
+    public GameObject spawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +30,8 @@ public class EnemySpawner : MonoBehaviour
             enemies.RemoveAll(enemy => enemy == null);
             if (enemies.Count < MaxEnemyCount)
             {
-                Vector3 spawnPosition = GetSpawnPosition();
-                GameObject newEnemy = Instantiate(Enemy, spawnPosition, Quaternion.identity);
+                //Vector3 spawnPosition = GetSpawnPosition();
+                GameObject newEnemy = Instantiate(Enemy, spawnPoint.transform.position, Quaternion.identity);
                 enemies.Add(newEnemy);
             }
         }
