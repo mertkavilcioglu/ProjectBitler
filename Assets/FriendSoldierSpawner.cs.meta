@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e77d653cb8757cd41b6886993b2e7cd5
+guid: 51337ba8d62d6514fbb6f04bb80315cb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - EnemyPrefab: {fileID: 3226967020029287393, guid: 892aaca14cd675548ba84e27d2b603cb, type: 3}
+  - FriendSoldierPrefab: {fileID: 3946551268325560655, guid: b63b98cd23ab21243bc7f80bacd0d115, type: 3}
   - spawnPoint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}

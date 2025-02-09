@@ -2,37 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class FriendSoldierSpawner : MonoBehaviour
 {
     [SerializeField]
-    public GameObject EnemyPrefab;
+    public GameObject FriendSoldierPrefab;
 
     [SerializeField]
-    private float EnemyInterval = 3f;
+    private float FriendSoldierInterval = 3f;
 
     [SerializeField]
-    private int MaxEnemyCount = 15;
+    private int MaxFriendSoldierCount = 15;
 
-    private List<GameObject> enemies = new List<GameObject>();
+    private List<GameObject> friendsoldiers = new List<GameObject>();
 
-    public GameObject enemySpawnPoint;
+    public GameObject friendSoldierSpawnPoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(spawnEnemy(EnemyInterval, EnemyPrefab));
+        StartCoroutine(spawnFriendSoldier(FriendSoldierInterval, FriendSoldierPrefab));
     }
 
-    private IEnumerator spawnEnemy(float Interval, GameObject Enemy) {
+    private IEnumerator spawnFriendSoldier(float Interval, GameObject FriendSoldier) {
         while (true)
         {
             yield return new WaitForSeconds(Interval);
-            enemies.RemoveAll(enemy => enemy == null);
-            if (enemies.Count < MaxEnemyCount)
+            friendsoldiers.RemoveAll(friendsoldier => friendsoldier == null);
+            if (friendsoldiers.Count < MaxFriendSoldierCount)
             {
                 //Vector3 spawnPosition = GetSpawnPosition();
-                GameObject newEnemy = Instantiate(Enemy, enemySpawnPoint.transform.position, Quaternion.identity);
-                enemies.Add(newEnemy);
+                GameObject newFriendSoldier = Instantiate(FriendSoldier, friendSoldierSpawnPoint.transform.position, Quaternion.identity);
+                friendsoldiers.Add(newFriendSoldier);
             }
         }
     }
@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
         float cameraWidth = cameraHeight * cam.aspect;
 
         // Sağ sınırın biraz dışında bir x pozisyonu belirle
-        float spawnX = cam.transform.position.x + cameraWidth / 2 + 1f; // Sağ sınırın hemen dışı
+        float spawnX = cam.transform.position.x + cameraWidth / 2 - 1f; // Sol sınırın hemen dışı
         float spawnY = Random.Range(cam.transform.position.y - cameraHeight / 2, cam.transform.position.y + cameraHeight / 2); // Kamera yüksekliğinde rastgele bir y değeri
 
         return new Vector3(spawnX, spawnY, 0); // Düzlemde spawn pozisyonu

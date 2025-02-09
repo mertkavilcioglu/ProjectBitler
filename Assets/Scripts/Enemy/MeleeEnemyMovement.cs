@@ -26,6 +26,12 @@ public class MeleeEnemyMovement : MonoBehaviour
 
     void Update()
     {
+        if (playerPos == null || playerPos.Equals(null))
+        {
+            // Eğer oyuncu yok edilmişse, işlem yapma.
+            return;
+        }
+
         // First check if player is in range (priority target)
         float distanceToPlayer = Vector2.Distance(transform.position, playerPos.position);
 
@@ -39,7 +45,9 @@ public class MeleeEnemyMovement : MonoBehaviour
             FindNearestYeniceri();
         }
 
-        if (currentTarget == null) return;
+        if (currentTarget == null || currentTarget.Equals(null)) {
+            return;
+        }
 
         float distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
         if (distanceToTarget > attackRange)
@@ -82,6 +90,8 @@ public class MeleeEnemyMovement : MonoBehaviour
 
         foreach (GameObject yeniceri in yeniceris)
         {
+            if (yeniceri == null) continue; // Eğer nesne yoksa atla.
+
             float distance = Vector2.Distance(transform.position, yeniceri.transform.position);
             if (distance < nearestDistance && distance <= yeniceriDetectionRange)
             {
