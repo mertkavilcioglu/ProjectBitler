@@ -86,7 +86,7 @@ public class Yeniceri : MonoBehaviour
     {
         if (currentTarget == null) return;
 
-        Debug.Log("Yeniceri saldýrýyor!");
+        Debug.Log("Yeniceri saldï¿½rï¿½yor!");
         animator.SetBool("IsAttacking", true);
 
         EnemyHealth enemyHealth = currentTarget.GetComponent<EnemyHealth>();

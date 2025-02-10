@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 51337ba8d62d6514fbb6f04bb80315cb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - FriendSoldierPrefab: {fileID: 3946551268325560655, guid: b63b98cd23ab21243bc7f80bacd0d115, type: 3}
+  - spawnPoint: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
