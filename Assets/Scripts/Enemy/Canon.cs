@@ -1,45 +1,44 @@
 using UnityEngine;
+using System.Linq;  // Linq, dizileri birleştirmek için kullanılıyor.
 
 public class Canon : MonoBehaviour
 {
-    [Header("Canon Ayarlari")]
     
     public GameObject canonBallPrefab;
-    
     public Transform firePoint;
-    
     public float fireRate = 2f;
-    
     public float range = 5f;
 
     private float nextFireTime = 0f;
-    private Transform player;
-
-    private void Start()
-    {
-        
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-        {
-            player = playerObj.transform;
-        }
-        else
-        {
-            Debug.LogWarning("Player bulunamadı!");
-        }
-    }
 
     private void Update()
     {
-        if (player == null) return;
+        // Sahnedeki hem "Player" hem de "Yeniceri" tagine sahip objeleri bul.
+        GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] friendSoldierObjs = GameObject.FindGameObjectsWithTag("FriendSoldier");
+        
+        // İki diziyi birleştiriyoruz.
+        GameObject[] targets = playerObjs.Concat(friendSoldierObjs).ToArray();
 
-        // FirePoint'ten oyuncuya olan mesafeyi kontrol et
-        float distance = Vector2.Distance(firePoint.position, player.position);
+        GameObject nearestTarget = null;
+        float nearestDistance = Mathf.Infinity;
 
-        if (distance <= range && Time.time >= nextFireTime)
+        // FirePoint pozisyonuna en yakın hedefi bul.
+        foreach (GameObject target in targets)
+        {
+            float distance = Vector2.Distance(firePoint.position, target.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestTarget = target;
+            }
+        }
+
+        // Eğer bir hedef bulunduysa, hedef menziline giriyorsa ve ateş etme süresi geldiyse ateşle.
+        if (nearestTarget != null && nearestDistance <= range && Time.time >= nextFireTime)
         {
             nextFireTime = Time.time + fireRate;
-            FireCanonBall(player.position);
+            FireCanonBall(nearestTarget.transform.position);
         }
     }
 
@@ -50,10 +49,8 @@ public class Canon : MonoBehaviour
             // FirePoint'ten canonball prefab’ını instantiate et.
             GameObject ball = Instantiate(canonBallPrefab, firePoint.position, Quaternion.identity);
 
-            // FirePoint ile hedef arasındaki yönü hesapla.
+            // Hedef ile FirePoint arasındaki yönü hesapla.
             Vector2 direction = (targetPosition - (Vector2)firePoint.position).normalized;
-
-            // Sadece canonball'ın rotasyonunu ayarla, hız CanonBall scripti tarafından ayarlanacak.
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             ball.transform.rotation = Quaternion.Euler(0, 0, angle);
         }

@@ -140,9 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2426f97574df8c149aaf27c1f1d17bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 10
+  playerDetectionRange: 8
+  yeniceriDetectionRange: 10
   attackRange: 15
   attackCooldown: 0
+  currentTarget: {fileID: 0}
   speed: 3
 --- !u!114 &8814322057949814709
 MonoBehaviour:
@@ -172,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBarPrefab: {fileID: 7448488247329751508}
-  healthBarOffset: {x: -1.8, y: 2, z: 0}
+  healthBarOffset: {x: -3, y: 3, z: 0}
 --- !u!1 &8814322058403232840
 GameObject:
   m_ObjectHideFlags: 0

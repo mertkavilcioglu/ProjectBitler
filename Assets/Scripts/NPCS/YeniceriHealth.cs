@@ -35,7 +35,7 @@ public class YeniceriHealth : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Sahnede Canvas bulunamadý!");
+                Debug.LogWarning("Sahnede Canvas bulunamadÄ±!");
             }
         }
     }
@@ -49,7 +49,7 @@ public class YeniceriHealth : MonoBehaviour
             healthBarInstance.SetFillAmount(fillAmount);
         }
 
-        Debug.Log(gameObject.name + " " + damage + " hasar aldý.");
+        Debug.Log(gameObject.name + " " + damage + " hasar aldÄ±.");
 
         if (currentHealth <= 0)
         {

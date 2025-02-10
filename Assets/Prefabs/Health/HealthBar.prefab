@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillImage: {fileID: 2578933278218776513}
-  offset: {x: -1.5, y: 2, z: 0}
+  offset: {x: -2, y: 3, z: 0}
 --- !u!1 &2578933278630405613
 GameObject:
   m_ObjectHideFlags: 0

@@ -407,7 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBarPrefab: {fileID: 2578933279476605361}
-  healthBarOffset: {x: -1.8, y: 2, z: 0}
+  healthBarOffset: {x: -3, y: 3, z: 0}
   animator: {fileID: 0}
 --- !u!1001 &2020063535
 PrefabInstance:
