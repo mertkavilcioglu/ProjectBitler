@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3913570096511871448}
   - component: {fileID: 3913570096511871449}
   - component: {fileID: 3913570096511871450}
+  - component: {fileID: -7141752313931546807}
   m_Layer: 9
   m_Name: FriendlyCanon
   m_TagString: FriendSoldier
@@ -119,6 +120,22 @@ MonoBehaviour:
   firePoint: {fileID: 3913570096782008706}
   fireRate: 2
   range: 50
+--- !u!70 &-7141752313931546807
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913570096511871454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.0000002, y: 2.0000005}
+  m_Direction: 0
 --- !u!1 &3913570096782008707
 GameObject:
   m_ObjectHideFlags: 0
