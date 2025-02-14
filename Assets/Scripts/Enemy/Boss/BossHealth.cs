@@ -220,6 +220,11 @@ public class BossHealth : MonoBehaviour
         healthBarCanvas.alpha = 1f;
     }
 
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
     private void Die()
     {
         if (fireChamberObject != null)
