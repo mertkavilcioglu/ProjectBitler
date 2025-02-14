@@ -1320,6 +1320,11 @@ MonoBehaviour:
   healthBarSpeed: 2
   delayedBarSpeed: 0.5
   fadeInDuration: 1
+  fireChamberObject: {fileID: 0}
+  chamberRadius: 20
+  chamberDamage: 10
+  damageTickRate: 0.5
+  chamberColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!61 &1655707476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1333,7 +1338,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0059633255, y: -0.00938344}
+  m_Offset: {x: -0.00067825615, y: -0.00938344}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1344,8 +1349,13 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.114895, y: 1.018868}
+  m_Size: {x: 0.9839114, y: 1.018868}
   m_EdgeRadius: 0
+--- !u!95 &1971285051 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4316213691594595360, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}
+  m_PrefabInstance: {fileID: 2044341733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2007307222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,5 +1629,9 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8066237004392531413, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1971285051}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}
