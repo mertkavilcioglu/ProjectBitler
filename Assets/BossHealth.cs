@@ -20,15 +20,24 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private float delayedBarSpeed = 0.5f;    // Speed of delayed bar
     [SerializeField] private float fadeInDuration = 1f;       // How long it takes for the bar to appear
 
+    [Header("Fire Chamber Settings")]
+    [SerializeField] private GameObject fireChamberObject;
+    [SerializeField] private float chamberRadius = 15f;
+    [SerializeField] private int chamberDamage = 10;
+    [SerializeField] private float damageTickRate = 0.5f;
+    [SerializeField] private Color chamberColor = new Color(1f, 0f, 0f, 0.3f);
+
     private float lerpTimer;
     private float delayedTimer;
+    private bool isFireChamberActive = false;
+    private float nextDamageTime;
+    private SpriteRenderer fireChamberRenderer;
+    private CircleCollider2D fireChamberCollider;
 
     private void Start()
     {
-        // Initialize health
         currentHealth = maxHealth;
 
-        // Setup UI elements
         if (healthSlider != null)
         {
             healthSlider.maxValue = maxHealth;
@@ -41,31 +50,85 @@ public class BossHealth : MonoBehaviour
             delayedHealthSlider.value = maxHealth;
         }
 
-        // Set boss name
         if (bossNameText != null)
         {
             bossNameText.text = "Constantine XI Palaiologos";
         }
 
-        // Start with health bar hidden
         if (healthBarCanvas != null)
         {
             healthBarCanvas.alpha = 0f;
         }
 
-        // Show health bar when battle starts
+        InitializeFireChamber();
         ShowHealthBar();
+    }
+    private void InitializeFireChamber()
+    {
+        if (fireChamberObject == null)
+        {
+            fireChamberObject = new GameObject("FireChamber");
+            fireChamberObject.transform.parent = transform;
+            fireChamberObject.transform.localPosition = Vector3.zero;
+
+            fireChamberRenderer = fireChamberObject.AddComponent<SpriteRenderer>();
+            fireChamberRenderer.sprite = CreateCircleSprite();
+            fireChamberRenderer.color = chamberColor;
+            fireChamberRenderer.sortingOrder = -1;
+
+            fireChamberCollider = fireChamberObject.AddComponent<CircleCollider2D>();
+            fireChamberCollider.radius = chamberRadius;
+            fireChamberCollider.isTrigger = true;
+
+            fireChamberObject.SetActive(false);
+        }
+    }
+
+    private Sprite CreateCircleSprite()
+    {
+        int textureDiameter = 256;
+        Texture2D texture = new Texture2D(textureDiameter, textureDiameter);
+
+        float radius = textureDiameter / 2f;
+        Color[] colors = new Color[textureDiameter * textureDiameter];
+
+        for (int x = 0; x < textureDiameter; x++)
+        {
+            for (int y = 0; y < textureDiameter; y++)
+            {
+                float distance = Vector2.Distance(
+                    new Vector2(x, y),
+                    new Vector2(radius, radius)
+                );
+
+                if (distance < radius)
+                {
+                    colors[y * textureDiameter + x] = Color.white;
+                }
+                else
+                {
+                    colors[y * textureDiameter + x] = Color.clear;
+                }
+            }
+        }
+
+        texture.SetPixels(colors);
+        texture.Apply();
+
+        return Sprite.Create(
+            texture,
+            new Rect(0, 0, textureDiameter, textureDiameter),
+            new Vector2(0.5f, 0.5f)
+        );
     }
 
     private void Update()
     {
-        // Update the health bar smoothly
         if (healthSlider != null && healthSlider.value != currentHealth)
         {
             healthSlider.value = Mathf.Lerp(healthSlider.value, currentHealth, Time.deltaTime * healthBarSpeed);
         }
 
-        // Update the delayed health bar
         if (delayedHealthSlider != null && delayedHealthSlider.value > healthSlider.value)
         {
             delayedTimer += Time.deltaTime;
@@ -75,6 +138,54 @@ public class BossHealth : MonoBehaviour
                 Debug.Log($"Delayed Health Slider Value: {delayedHealthSlider.value}");
             }
         }
+        if (!isFireChamberActive && currentHealth <= maxHealth-10)
+        {
+            ActivateFireChamber();
+        }
+    }
+    private void ActivateFireChamber()
+    {
+        isFireChamberActive = true;
+        if (fireChamberObject != null)
+        {
+            fireChamberObject.SetActive(true);
+            StartCoroutine(PulseChamberEffect());
+        }
+    }
+
+    private IEnumerator PulseChamberEffect()
+    {
+        while (isFireChamberActive)
+        {
+            // Create a pulsing effect by modifying the alpha
+            float baseAlpha = chamberColor.a;
+            float pulseSpeed = 2f;
+
+            // Pulse the alpha value between 0.2 and 0.4
+            float newAlpha = baseAlpha + (Mathf.Sin(Time.time * pulseSpeed) * 0.1f);
+            fireChamberRenderer.color = new Color(
+                chamberColor.r,
+                chamberColor.g,
+                chamberColor.b,
+                newAlpha
+            );
+
+            yield return null;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (isFireChamberActive && other.CompareTag("Player") && Time.time >= nextDamageTime)
+        {
+            // Apply damage to player
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(chamberDamage);
+                nextDamageTime = Time.time + damageTickRate;
+            }
+        }
     }
 
     public void TakeDamage(int damage)
@@ -82,7 +193,6 @@ public class BossHealth : MonoBehaviour
         Debug.Log($"Taking {damage} damage!");
         delayedTimer = 0f;
         currentHealth = Mathf.Max(0, currentHealth - damage);
-
         if (currentHealth <= 0)
         {
             Die();
@@ -107,13 +217,16 @@ public class BossHealth : MonoBehaviour
             healthBarCanvas.alpha = newAlpha;
             yield return null;
         }
-        healthBarCanvas.alpha = 1f; // Ensure we end at exactly 1
+        healthBarCanvas.alpha = 1f;
     }
 
     private void Die()
     {
-        // Handle boss death here
+        if (fireChamberObject != null)
+        {
+            fireChamberObject.SetActive(false);
+        }
+
         Debug.Log($"{gameObject.name} has been defeated!");
-        // Add your death effects, animations, or game over logic
     }
 }
