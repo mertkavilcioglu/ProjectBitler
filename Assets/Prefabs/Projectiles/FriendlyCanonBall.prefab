@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6140496427802314495}
   - component: {fileID: 6140496427802314494}
   - component: {fileID: 5769691485738784906}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FriendlyCanonBall
   m_TagString: FriendlyProjectile
   m_Icon: {fileID: 0}

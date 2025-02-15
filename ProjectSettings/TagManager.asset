@@ -10,6 +10,7 @@ TagManager:
   - EnemyProjectile
   - FriendSoldier
   - FriendlyProjectile
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - EnemyProjectile
   - FriendSoldier
   - FriendlyProjectile
-  - 
+  - Boss
   - 
   - 
   - 

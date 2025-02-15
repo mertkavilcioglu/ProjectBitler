@@ -24,10 +24,17 @@ public class Bullet : MonoBehaviour
         enemyHealth.TakeDamage(20); // Mermi 1 hasar veriyor
         Destroy(gameObject);         
     }
-    else if (!collision.gameObject.CompareTag("Player"))
+    else if (collision.gameObject.CompareTag("Boss"))
     {
-        Destroy(gameObject);         
+        BossHealth bossHealth = collision.gameObject.GetComponent<BossHealth>();
+        if (bossHealth != null)
+        {
+            bossHealth.TakeDamage(20);
+        }
     }
+    
+    Destroy(gameObject);         
+    
 }
 
     private void OnBecameInvisible()
