@@ -1280,7 +1280,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1303374131}
   - {fileID: 2007307223}
-  spawnInterval: 7
+  spawnInterval: 10
   enemiesPerWave: 3
   attackRange: 10
   attackCooldown: 3
@@ -1375,7 +1375,7 @@ MonoBehaviour:
   delayedBarSpeed: 0.5
   fadeInDuration: 1
   fireChamberObject: {fileID: 0}
-  chamberRadius: 20
+  chamberRadius: 5
   chamberDamage: 10
   damageTickRate: 0.5
   chamberColor: {r: 1, g: 0, b: 0, a: 0.3}

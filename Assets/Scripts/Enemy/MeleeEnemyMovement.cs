@@ -133,4 +133,8 @@ public class MeleeEnemyMovement : MonoBehaviour
     {
         isAttacking = false;
     }
+    public void BossSceneRange(float newPlayerDetection)
+    {
+        playerDetectionRange = newPlayerDetection;
+    }
 }

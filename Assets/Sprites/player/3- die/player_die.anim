@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: playerrr_die
+  m_Name: player_die
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: a55ccf0dcb93d644593ef6a2a5b88f6b, type: 3}
+      value: {fileID: 21300000, guid: c1aff1bfd869d674d96a753a7b6712f3, type: 3}
     - time: 0.25
       value: {fileID: 21300000, guid: 0cdd5190d2427884290520c064c3e44f, type: 3}
     - time: 0.5
@@ -48,7 +48,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: a55ccf0dcb93d644593ef6a2a5b88f6b, type: 3}
+    - {fileID: 21300000, guid: c1aff1bfd869d674d96a753a7b6712f3, type: 3}
     - {fileID: 21300000, guid: 0cdd5190d2427884290520c064c3e44f, type: 3}
     - {fileID: 21300000, guid: 1f3fbf3724b33fc46afea2cb576284ca, type: 3}
     - {fileID: 21300000, guid: fe2d3d55c65a41b479eb933ca48018d1, type: 3}

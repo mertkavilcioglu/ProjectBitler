@@ -75,31 +75,33 @@ public class Boss : MonoBehaviour
         GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+        // Instantiate and get reference to the new enemy
+        GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+
+        // Get the movement component and set custom ranges for boss fight
+        MeleeEnemyMovement enemyMovement = spawnedEnemy.GetComponent<MeleeEnemyMovement>();
+        if (enemyMovement != null)
+        {
+            enemyMovement.BossSceneRange(newPlayerDetection: 10f);
+        }
     }
 
     private void PerformSwordAttack()
     {
-        // Create a line between boss and player to represent sword attack
-        RaycastHit2D hit = Physics2D.Raycast(transform.position,
-            (player.position - transform.position).normalized,
-            attackRange);
-
-        if (hit.collider != null && hit.collider.CompareTag("Player"))
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        if (distanceToPlayer <= attackRange)
         {
-            // Deal damage to player
-            PlayerHealth playerHealth = hit.collider.GetComponent<PlayerHealth>();
+            // Deal damage to the player
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(swordDamage);
             }
         }
 
-        // Update last attack time
         lastAttackTime = Time.time;
     }
 
-    // Optional: Visualize the attack and detection ranges in the editor
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -19,7 +22,6 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        // Sahnedeki Canvas’ı bulup health bar prefab’ını oraya instantiate ediyoruz.
         if (healthBarPrefab != null)
         {
             Canvas canvas = FindObjectOfType<Canvas>();
@@ -31,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
                 {
                     healthBarInstance.SetTarget(transform);
                     healthBarInstance.offset = healthBarOffset;
-                    healthBarInstance.SetFillAmount(1f); // Tam dolu başlangıç
+                    healthBarInstance.SetFillAmount(1f);
                 }
             }
             else
@@ -58,12 +60,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        if (healthBarInstance != null)
-        {
-            Destroy(healthBarInstance.gameObject);
-        }
-
-        //animator.SetBool("IsDead", true);
+        animator.SetBool("IsDead", true);
+        StartCoroutine(HandleDeath());
+    }
+    private IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(1f);
 
         Destroy(gameObject);
     }

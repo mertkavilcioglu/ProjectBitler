@@ -10,19 +10,19 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private int currentHealth;
 
     [Header("UI Elements")]
-    [SerializeField] private Slider healthSlider;             // The main health bar
-    [SerializeField] private Slider delayedHealthSlider;      // Delayed bar that shows damage taken
-    [SerializeField] private TextMeshProUGUI bossNameText;    // Boss name display
-    [SerializeField] private CanvasGroup healthBarCanvas;     // To fade the health bar in/out
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Slider delayedHealthSlider;
+    [SerializeField] private TextMeshProUGUI bossNameText;
+    [SerializeField] private CanvasGroup healthBarCanvas;
 
     [Header("Visual Settings")]
-    [SerializeField] private float healthBarSpeed = 2f;       // Speed of health bar updates
-    [SerializeField] private float delayedBarSpeed = 0.5f;    // Speed of delayed bar
-    [SerializeField] private float fadeInDuration = 1f;       // How long it takes for the bar to appear
+    [SerializeField] private float healthBarSpeed = 2f;
+    [SerializeField] private float delayedBarSpeed = 0.5f;
+    [SerializeField] private float fadeInDuration = 1f;
 
     [Header("Fire Chamber Settings")]
     [SerializeField] private GameObject fireChamberObject;
-    [SerializeField] private float chamberRadius = 15f;
+    [SerializeField] private float chamberRadius = 2f;
     [SerializeField] private int chamberDamage = 10;
     [SerializeField] private float damageTickRate = 0.5f;
     [SerializeField] private Color chamberColor = new Color(1f, 0f, 0f, 0.3f);
@@ -63,6 +63,7 @@ public class BossHealth : MonoBehaviour
         InitializeFireChamber();
         ShowHealthBar();
     }
+
     private void InitializeFireChamber()
     {
         if (fireChamberObject == null)
@@ -77,10 +78,24 @@ public class BossHealth : MonoBehaviour
             fireChamberRenderer.sortingOrder = -1;
 
             fireChamberCollider = fireChamberObject.AddComponent<CircleCollider2D>();
-            fireChamberCollider.radius = chamberRadius;
             fireChamberCollider.isTrigger = true;
 
             fireChamberObject.SetActive(false);
+        }
+
+        UpdateFireChamberSize();
+    }
+
+    private void UpdateFireChamberSize()
+    {
+        if (fireChamberCollider != null)
+        {
+            fireChamberCollider.radius = chamberRadius;
+        }
+
+        if (fireChamberRenderer != null)
+        {
+            fireChamberObject.transform.localScale = new Vector3(chamberRadius, chamberRadius, 1f);
         }
     }
 
@@ -138,11 +153,13 @@ public class BossHealth : MonoBehaviour
                 Debug.Log($"Delayed Health Slider Value: {delayedHealthSlider.value}");
             }
         }
-        if (!isFireChamberActive && currentHealth <= maxHealth-10)
+
+        if (!isFireChamberActive && currentHealth <= maxHealth - 10)//////////////////////////////////////////////
         {
             ActivateFireChamber();
         }
     }
+
     private void ActivateFireChamber()
     {
         isFireChamberActive = true;
@@ -157,11 +174,9 @@ public class BossHealth : MonoBehaviour
     {
         while (isFireChamberActive)
         {
-            // Create a pulsing effect by modifying the alpha
             float baseAlpha = chamberColor.a;
             float pulseSpeed = 2f;
 
-            // Pulse the alpha value between 0.2 and 0.4
             float newAlpha = baseAlpha + (Mathf.Sin(Time.time * pulseSpeed) * 0.1f);
             fireChamberRenderer.color = new Color(
                 chamberColor.r,
@@ -178,7 +193,6 @@ public class BossHealth : MonoBehaviour
     {
         if (isFireChamberActive && other.CompareTag("Player") && Time.time >= nextDamageTime)
         {
-            // Apply damage to player
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
@@ -233,5 +247,13 @@ public class BossHealth : MonoBehaviour
         }
 
         Debug.Log($"{gameObject.name} has been defeated!");
+    }
+
+    private void OnValidate()
+    {
+        if (fireChamberCollider != null)
+        {
+            UpdateFireChamberSize();
+        }
     }
 }
