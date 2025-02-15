@@ -43,7 +43,7 @@ public class GroundChamberManager : MonoBehaviour
 
         while (!spawningStarted)
         {
-            if (bossHealth.GetCurrentHealth() <= 990f)
+            if (bossHealth.GetCurrentHealth() <= 500f)
             {
                 StartSpawning();
                 spawningStarted = true;

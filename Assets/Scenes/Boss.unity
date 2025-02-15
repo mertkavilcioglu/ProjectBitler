@@ -1282,9 +1282,6 @@ MonoBehaviour:
   - {fileID: 2007307223}
   spawnInterval: 10
   enemiesPerWave: 3
-  attackRange: 10
-  attackCooldown: 3
-  swordDamage: 25
   detectionRange: 15
 --- !u!212 &1655707473
 SpriteRenderer:
@@ -1365,6 +1362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a0aa2547b6b958489b8d6e230effdf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
   maxHealth: 1000
   currentHealth: 1000
   healthSlider: {fileID: 1140905240}

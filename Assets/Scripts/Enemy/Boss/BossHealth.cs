@@ -2,9 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class BossHealth : MonoBehaviour
 {
+    public float speed = 1f;
+
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 1000;
     [SerializeField] private int currentHealth;
@@ -27,15 +30,18 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private float damageTickRate = 0.5f;
     [SerializeField] private Color chamberColor = new Color(1f, 0f, 0f, 0.3f);
 
+    
     private float lerpTimer;
     private float delayedTimer;
     private bool isFireChamberActive = false;
     private float nextDamageTime;
     private SpriteRenderer fireChamberRenderer;
-    private CircleCollider2D fireChamberCollider;
+    private CircleCollider2D fireChamberCollider;    
+    private Transform player;
 
     private void Start()
     {
+        
         currentHealth = maxHealth;
 
         if (healthSlider != null)
@@ -154,11 +160,22 @@ public class BossHealth : MonoBehaviour
             }
         }
 
-        if (!isFireChamberActive && currentHealth <= maxHealth - 10)//////////////////////////////////////////////
+        if (!isFireChamberActive && currentHealth <= maxHealth/2)/////////////////////////////////////////////////////////////////////////
         {
-            ActivateFireChamber();
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+            if (player != null)
+            {
+                isFireChamberActive = true;
+                ActivateFireChamber();
+            }
+        }
+
+        if (isFireChamberActive && player != null)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
     }
+
 
     private void ActivateFireChamber()
     {
@@ -191,8 +208,9 @@ public class BossHealth : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (isFireChamberActive && other.CompareTag("Player") && Time.time >= nextDamageTime)
+        if (other.CompareTag("Player") && Time.time >= nextDamageTime)
         {
+            // Apply damage to player
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
@@ -238,15 +256,24 @@ public class BossHealth : MonoBehaviour
     {
         return currentHealth;
     }
-
-    private void Die()
+    void Die()
     {
         if (fireChamberObject != null)
         {
             fireChamberObject.SetActive(false);
         }
 
-        Debug.Log($"{gameObject.name} has been defeated!");
+        //animator.SetBool("IsDead", true);
+
+        /*StartCoroutine(HandleDeath());
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(1.8f); // Regular WaitForSeconds is fine now
+
+        */        
+        Destroy(gameObject);        
     }
 
     private void OnValidate()
