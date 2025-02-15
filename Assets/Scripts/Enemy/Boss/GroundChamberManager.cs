@@ -5,20 +5,20 @@ using System.Collections.Generic;
 public class GroundChamberManager : MonoBehaviour
 {
     [Header("Spawn Settings")]
-    [SerializeField] private float spawnInterval = 7f;           // Time between spawns
-    [SerializeField] private float chamberLifetime = 5f;         // How long each chamber lasts
-    [SerializeField] private int maxChambers = 3;                // Maximum chambers at once
-    [SerializeField] private float chamberRadius = 2f;           // Size of each chamber
+    [SerializeField] private float spawnInterval = 7f;
+    [SerializeField] private float chamberLifetime = 5f;
+    [SerializeField] private int maxChambers = 3;
+    [SerializeField] private float chamberRadius = 2f;
     [SerializeField] private Color chamberColor = new Color(1f, 0f, 0f, 0.3f);
 
     [Header("Spawn Area")]
-    [SerializeField] private Vector2 areaSize = new Vector2(10f, 10f);  // Size of spawn area
-    [SerializeField] private Vector2 areaOffset = Vector2.zero;         // Offset from manager position
+    [SerializeField] private Vector2 areaSize = new Vector2(28f, 10f);
+    [SerializeField] private Vector2 areaOffset = Vector2.zero;
 
     [Header("References")]
-    [SerializeField] private BossHealth bossHealth;              // Reference to boss health
-    [SerializeField] private int chamberDamage = 10;            // Damage per tick
-    [SerializeField] private float damageTickRate = 0.5f;       // How often damage is applied
+    [SerializeField] private BossHealth bossHealth;
+    [SerializeField] private int chamberDamage = 10;
+    [SerializeField] private float damageTickRate = 0.5f;
 
     private bool isSpawning = false;
     private List<GameObject> activeChambers = new List<GameObject>();
@@ -26,16 +26,13 @@ public class GroundChamberManager : MonoBehaviour
 
     private void Start()
     {
-        // Find boss health if not assigned
         if (bossHealth == null)
         {
             bossHealth = FindObjectOfType<BossHealth>();
         }
 
-        // Subscribe to boss health events
         if (bossHealth != null)
         {
-            // Start spawning when boss reaches half health
             StartCoroutine(CheckBossHealth());
         }
     }
@@ -46,7 +43,6 @@ public class GroundChamberManager : MonoBehaviour
 
         while (!spawningStarted)
         {
-            // Check if boss is at half health
             if (bossHealth.GetCurrentHealth() <= 990f)
             {
                 StartSpawning();
@@ -93,11 +89,9 @@ public class GroundChamberManager : MonoBehaviour
         );
         Vector2 spawnPos = (Vector2)transform.position + areaOffset + randomOffset;
 
-        // Create chamber
         GameObject chamber = CreateChamber(spawnPos);
         activeChambers.Add(chamber);
 
-        // Destroy after lifetime
         StartCoroutine(DestroyChamberAfterDelay(chamber));
     }
 
@@ -106,26 +100,21 @@ public class GroundChamberManager : MonoBehaviour
         GameObject chamber = new GameObject("GroundChamber");
         chamber.transform.position = position;
 
-        // Add visual
         SpriteRenderer renderer = chamber.AddComponent<SpriteRenderer>();
         renderer.sprite = CreateCircleSprite();
         renderer.color = chamberColor;
         renderer.sortingOrder = -1;
 
-        // Set scale based on radius
         float scaleFactor = chamberRadius * 2f;
         chamber.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
 
-        // Add trigger collider
         CircleCollider2D collider = chamber.AddComponent<CircleCollider2D>();
         collider.radius = 0.5f;
         collider.isTrigger = true;
 
-        // Add damage component
         ChamberDamage damageComponent = chamber.AddComponent<ChamberDamage>();
         damageComponent.Initialize(chamberDamage, damageTickRate);
 
-        // Add fade in effect
         StartCoroutine(FadeIn(renderer));
 
         return chamber;
@@ -214,10 +203,4 @@ public class GroundChamberManager : MonoBehaviour
         );
     }
 
-    private void OnDrawGizmos()
-    {
-        // Draw spawn area in editor
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position + (Vector3)areaOffset, (Vector3)areaSize);
-    }
 }

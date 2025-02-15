@@ -41,6 +41,13 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.flipX = player.transform.position.x > transform.position.x;
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;

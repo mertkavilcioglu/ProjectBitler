@@ -1,12 +1,10 @@
 using UnityEngine;
-
 public class EnemyArrow : MonoBehaviour
 {
     public float force;
     public int damage = 15;
     private Rigidbody2D rb;
     private Transform target;
-
 
     void Start()
     {
@@ -24,8 +22,10 @@ public class EnemyArrow : MonoBehaviour
         {
             Vector3 direction = target.position - transform.position;
             rb.velocity = direction.normalized * force;
-            float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+
+            // Calculate the angle between the arrow and the target
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
 
