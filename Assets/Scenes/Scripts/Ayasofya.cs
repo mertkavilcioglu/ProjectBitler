@@ -7,7 +7,7 @@ public class Ayasofya : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene("Ayasofya_ic");
         }
     }
 }
