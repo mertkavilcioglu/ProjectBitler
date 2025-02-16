@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5b8ed99eb2b72c043a321e1e54c3e418
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - player: {fileID: 4316213691594595366, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}
+  - castleLocator: {fileID: 3415623818688424268, guid: 6a70d22856485c14da76e6c0aa8f03c6, type: 3}
+  - castlePoint: {fileID: 7965786546999072196, guid: fd59feb9c5398ab4b91e76606339bcc5, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

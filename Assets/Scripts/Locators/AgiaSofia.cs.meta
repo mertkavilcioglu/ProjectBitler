@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ef8d217db9e04cd4ba9e1cfdae5f15fd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - player: {fileID: 4316213691594595366, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}
+  - agiaSofiaLocator: {fileID: 47231911950264992, guid: 097de829ff06d8a43bafda464a2ca5fc, type: 3}
+  - agiaSofiaPoint: {fileID: 4903903564937698303, guid: 88f7021d5fb76e1429049af380d4b6d3, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
