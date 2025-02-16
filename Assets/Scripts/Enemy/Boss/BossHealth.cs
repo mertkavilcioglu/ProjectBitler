@@ -28,6 +28,7 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private float healthThreshold;
     
     private float delayedTimer;
+    private bool isDead = false;
     private Transform player;
     Animator animator;
 
@@ -81,6 +82,23 @@ public class BossHealth : MonoBehaviour
 
     private void Update()
     {
+        if (isDead)
+        {
+            UpdateHealthBars();
+            return;
+        }
+
+        UpdateHealthBars();
+        
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (currentHealth <= maxHealth/2)//////////////////////////////////////////////////////////////////////////////////////////////
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            animator.SetBool("IsWalking", true);
+        }
+    }
+    private void UpdateHealthBars()
+    {
         if (healthSlider != null && healthSlider.value != currentHealth)
         {
             healthSlider.value = Mathf.Lerp(healthSlider.value, currentHealth, Time.deltaTime * healthBarSpeed);
@@ -93,12 +111,6 @@ public class BossHealth : MonoBehaviour
             {
                 delayedHealthSlider.value = Mathf.Lerp(delayedHealthSlider.value, currentHealth, Time.deltaTime * healthBarSpeed);
             }
-        }
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
-        if (currentHealth <= maxHealth/2)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-            animator.SetBool("IsWalking", true);
         }
     }
 
@@ -138,8 +150,17 @@ public class BossHealth : MonoBehaviour
         return currentHealth;
     }
     void Die()
-    {  
-        Destroy(gameObject);        
+    {
+        isDead = true;
+        speed = 0f;
+        animator.SetBool("IsDead", true);
+        StartCoroutine(HandleDeath());
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(2.03f);
+        Destroy(gameObject);
     }
 
 }

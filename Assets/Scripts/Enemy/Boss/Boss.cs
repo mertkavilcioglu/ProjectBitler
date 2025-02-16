@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private float spawnInterval = 7f;     // Time between spawns in seconds
     [SerializeField] private int enemiesPerWave = 3;      // Number of enemies to spawn each wave
 
-    [SerializeField] private float detectionRange = 15f;   // Range at which boss notices player
+    [SerializeField] private float detectionRange;
 
     private Transform player;
     private bool isPlayerInRange;
@@ -58,7 +58,7 @@ public class Boss : MonoBehaviour
         MeleeEnemyMovement enemyMovement = spawnedEnemy.GetComponent<MeleeEnemyMovement>();
         if (enemyMovement != null)
         {
-            enemyMovement.BossSceneRange(newPlayerDetection: 10f);
+            enemyMovement.BossSceneRange(newPlayerDetection: 25f);
         }
     }
     

@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("Oyuncunun maksimum can değeri (Inspector üzerinden değiştirilebilir).")]
     public int maxHealth = 100;
     private int currentHealth;
+    private bool isDead = false;
 
     [Header("Health Bar UI")]
     [Tooltip("Health bar prefab’ı (Border, Background, Fill içeren prefab).")]
@@ -60,8 +61,14 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        animator.SetBool("IsDead", true);
-        StartCoroutine(HandleDeath());
+        if (!isDead)
+        {
+            isDead = true;
+            Freezer.Instance.FreezeGame();
+            animator.SetBool("IsDead", true);
+            StartCoroutine(HandleDeath());
+        }
+        
     }
     private IEnumerator HandleDeath()
     {

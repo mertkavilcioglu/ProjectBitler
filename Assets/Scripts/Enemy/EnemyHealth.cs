@@ -43,6 +43,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void Update()
     {
+        if (Freezer.Instance.IsGameFrozen)
+        {
+            return;
+        }
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.flipX = player.transform.position.x > transform.position.x;
