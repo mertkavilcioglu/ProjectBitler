@@ -126,7 +126,7 @@ MonoBehaviour:
   canonBallPrefab: {fileID: 6140496427802314483, guid: 3a584f827a6298444ae51bdbe1b789e6, type: 3}
   firePoint: {fileID: 4494402469367180683}
   fireRate: 2
-  range: 50
+  range: 30
 --- !u!70 &4494402468420197593
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
