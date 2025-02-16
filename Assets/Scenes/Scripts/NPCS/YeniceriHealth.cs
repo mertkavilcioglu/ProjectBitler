@@ -39,6 +39,13 @@ public class YeniceriHealth : MonoBehaviour
             }
         }
     }
+    void Update()
+    {
+        if (Freezer.Instance.IsGameFrozen)
+        {
+            return;
+        }
+    }
 
     public void TakeDamage(int damage)
     {

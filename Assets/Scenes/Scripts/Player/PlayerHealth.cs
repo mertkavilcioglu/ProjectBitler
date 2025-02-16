@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -6,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("Oyuncunun maksimum can değeri (Inspector üzerinden değiştirilebilir).")]
     public int maxHealth = 100;
     private int currentHealth;
+    private bool isDead = false;
 
     [Header("Health Bar UI")]
     [Tooltip("Health bar prefab’ı (Border, Background, Fill içeren prefab).")]
@@ -19,7 +23,6 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        // Sahnedeki Canvas’ı bulup health bar prefab’ını oraya instantiate ediyoruz.
         if (healthBarPrefab != null)
         {
             Canvas canvas = FindObjectOfType<Canvas>();
@@ -31,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
                 {
                     healthBarInstance.SetTarget(transform);
                     healthBarInstance.offset = healthBarOffset;
-                    healthBarInstance.SetFillAmount(1f); // Tam dolu başlangıç
+                    healthBarInstance.SetFillAmount(1f);
                 }
             }
             else
@@ -58,13 +61,21 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        if (healthBarInstance != null)
+        if (!isDead)
         {
-            Destroy(healthBarInstance.gameObject);
+            isDead = true;
+            Freezer.Instance.FreezeGame();
+            animator.SetBool("IsDead", true);
+            StartCoroutine(HandleDeath());
         }
-
-        //animator.SetBool("IsDead", true);
+        
+    }
+    private IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(1f);
 
         Destroy(gameObject);
+        
+        SceneManager.LoadScene("YouDiedRetry");
     }
 }
