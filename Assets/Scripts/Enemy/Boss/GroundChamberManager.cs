@@ -43,12 +43,12 @@ public class GroundChamberManager : MonoBehaviour
 
         while (!spawningStarted)
         {
-            if (bossHealth.GetCurrentHealth() <= 500f)
+            if (bossHealth.GetCurrentHealth() <= 500f)//////////////////////////////////////////////////////////////////////////
             {
                 StartSpawning();
                 spawningStarted = true;
             }
-            yield return new WaitForSeconds(0.5f); // Check every half second
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -82,7 +82,6 @@ public class GroundChamberManager : MonoBehaviour
 
     private void SpawnChamber()
     {
-        // Calculate random position within area
         Vector2 randomOffset = new Vector2(
             Random.Range(-areaSize.x / 2, areaSize.x / 2),
             Random.Range(-areaSize.y / 2, areaSize.y / 2)
@@ -139,7 +138,7 @@ public class GroundChamberManager : MonoBehaviour
 
     private IEnumerator DestroyChamberAfterDelay(GameObject chamber)
     {
-        yield return new WaitForSeconds(chamberLifetime - 0.5f); // Start fading 0.5 seconds before destruction
+        yield return new WaitForSeconds(chamberLifetime - 0.5f);
 
         // Fade out
         if (chamber != null)
