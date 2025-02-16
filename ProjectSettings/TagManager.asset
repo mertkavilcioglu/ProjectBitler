@@ -13,6 +13,7 @@ TagManager:
   - Boss
   - Duvar
   - Zemin
+  - "\xE7ad\u0131r"
   layers:
   - Default
   - TransparentFX
@@ -28,8 +29,8 @@ TagManager:
   - Boss
   - Duvar
   - Zemin
-  - 
-  - 
+  - "\xC7ad\u0131r"
+  - Gemi
   - 
   - 
   - 
