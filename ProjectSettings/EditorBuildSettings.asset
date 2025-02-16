@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: b504243138681fe499ee975fa506890e
   - enabled: 1
-    path: Assets/Scenes/Map.unity
-    guid: 11584810ff21cb34a98c4ec34eb3fc8a
+    path: Assets/Scenes/Boss.unity
+    guid: b83bbbd5e3206be428a4a67b1995da97
+  - enabled: 1
+    path: Assets/Scenes/YouDiedRetry.unity
+    guid: 84ec6e6e072ea244a853b3a9471f9d36
   - enabled: 1
     path: Assets/Scenes/Ayasofya_ic.unity
     guid: 4cf9b522d12d1764f97cd3c26ff4e0b4
