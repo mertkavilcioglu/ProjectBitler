@@ -247,13 +247,13 @@ MonoBehaviour:
   spawnInterval: 7
   chamberLifetime: 5
   maxChambers: 3
-  chamberRadius: 1.5
-  chamberColor: {r: 1, g: 0, b: 0, a: 0.3}
+  chamberRadius: 2.5
   areaSize: {x: 10, y: 10}
   areaOffset: {x: 0, y: 0}
   bossHealth: {fileID: 1655707475}
   chamberDamage: 10
   damageTickRate: 0.5
+  chamberAnimator: {fileID: 9100000, guid: 4ab09cced8f5a1c43b18014678e1ce12, type: 2}
 --- !u!4 &151255981
 Transform:
   m_ObjectHideFlags: 0

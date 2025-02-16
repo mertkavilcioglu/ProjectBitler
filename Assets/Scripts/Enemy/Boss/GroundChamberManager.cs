@@ -9,7 +9,6 @@ public class GroundChamberManager : MonoBehaviour
     [SerializeField] private float chamberLifetime = 5f;
     [SerializeField] private int maxChambers = 3;
     [SerializeField] private float chamberRadius = 2f;
-    [SerializeField] private Color chamberColor = new Color(1f, 0f, 0f, 0.3f);
 
     [Header("Spawn Area")]
     [SerializeField] private Vector2 areaSize = new Vector2(28f, 10f);
@@ -20,9 +19,9 @@ public class GroundChamberManager : MonoBehaviour
     [SerializeField] private int chamberDamage = 10;
     [SerializeField] private float damageTickRate = 0.5f;
 
+    [SerializeField] private RuntimeAnimatorController chamberAnimator;
     private bool isSpawning = false;
     private List<GameObject> activeChambers = new List<GameObject>();
-    private float nextDamageTime;
 
     private void Start()
     {
@@ -65,7 +64,6 @@ public class GroundChamberManager : MonoBehaviour
     {
         while (isSpawning)
         {
-            // Remove any chambers that exceed the max limit
             while (activeChambers.Count >= maxChambers)
             {
                 if (activeChambers[0] != null)
@@ -100,10 +98,13 @@ public class GroundChamberManager : MonoBehaviour
         chamber.transform.position = position;
 
         SpriteRenderer renderer = chamber.AddComponent<SpriteRenderer>();
-        renderer.sprite = CreateCircleSprite();
-        renderer.color = chamberColor;
         renderer.sortingOrder = -1;
 
+        // Add Animator component and set the controller
+        Animator animator = chamber.AddComponent<Animator>();
+        animator.runtimeAnimatorController = chamberAnimator;
+
+        // Scale setup
         float scaleFactor = chamberRadius * 2f;
         chamber.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
 
@@ -114,33 +115,14 @@ public class GroundChamberManager : MonoBehaviour
         ChamberDamage damageComponent = chamber.AddComponent<ChamberDamage>();
         damageComponent.Initialize(chamberDamage, damageTickRate);
 
-        StartCoroutine(FadeIn(renderer));
-
         return chamber;
     }
 
-    private IEnumerator FadeIn(SpriteRenderer renderer)
-    {
-        float elapsed = 0f;
-        float duration = 0.5f;
-        Color startColor = renderer.color;
-        startColor.a = 0f;
-        renderer.color = startColor;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float alpha = Mathf.Lerp(0f, chamberColor.a, elapsed / duration);
-            renderer.color = new Color(chamberColor.r, chamberColor.g, chamberColor.b, alpha);
-            yield return null;
-        }
-    }
 
     private IEnumerator DestroyChamberAfterDelay(GameObject chamber)
     {
         yield return new WaitForSeconds(chamberLifetime - 0.5f);
 
-        // Fade out
         if (chamber != null)
         {
             SpriteRenderer renderer = chamber.GetComponent<SpriteRenderer>();
@@ -164,42 +146,6 @@ public class GroundChamberManager : MonoBehaviour
         }
     }
 
-    private Sprite CreateCircleSprite()
-    {
-        int textureDiameter = 256;
-        Texture2D texture = new Texture2D(textureDiameter, textureDiameter);
-
-        float radius = textureDiameter / 2f;
-        Color[] colors = new Color[textureDiameter * textureDiameter];
-
-        for (int x = 0; x < textureDiameter; x++)
-        {
-            for (int y = 0; y < textureDiameter; y++)
-            {
-                float distance = Vector2.Distance(
-                    new Vector2(x, y),
-                    new Vector2(radius, radius)
-                );
-
-                if (distance < radius)
-                {
-                    colors[y * textureDiameter + x] = Color.white;
-                }
-                else
-                {
-                    colors[y * textureDiameter + x] = Color.clear;
-                }
-            }
-        }
-
-        texture.SetPixels(colors);
-        texture.Apply();
-
-        return Sprite.Create(
-            texture,
-            new Rect(0, 0, textureDiameter, textureDiameter),
-            new Vector2(0.5f, 0.5f)
-        );
-    }
+    
 
 }
