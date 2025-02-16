@@ -6,17 +6,23 @@ public class Boss : MonoBehaviour
     [Header("Enemy Spawning")]
     [SerializeField] private GameObject[] enemyPrefabs;    // Array of enemy prefabs to spawn
     [SerializeField] private Transform[] spawnPoints;      // Array of spawn points around the boss
-    [SerializeField] private float spawnInterval = 7f;     // Time between spawns in seconds
+    [SerializeField] private float spawnInterval;     // Time between spawns in seconds
     [SerializeField] private int enemiesPerWave = 3;      // Number of enemies to spawn each wave
 
     [SerializeField] private float detectionRange;
 
     private Transform player;
+    Animator animator;
     private bool isPlayerInRange;
     private bool canSpawnEnemies = true;
 
     private void Start()
     {
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         StartCoroutine(SpawnEnemiesRoutine());
@@ -33,10 +39,16 @@ public class Boss : MonoBehaviour
 
     private IEnumerator SpawnEnemiesRoutine()
     {
+        
+
         while (canSpawnEnemies)
         {
             if (isPlayerInRange)
             {
+                animator.SetBool("IsSummoning", true);
+                yield return new WaitForSeconds(1f);
+                animator.SetBool("IsSummoning", false);
+
                 for (int i = 0; i < enemiesPerWave; i++)
                 {
                     SpawnEnemy();
@@ -45,7 +57,6 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-
     private void SpawnEnemy()
     {
         if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0) return;

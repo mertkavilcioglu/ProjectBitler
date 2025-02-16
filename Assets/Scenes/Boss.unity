@@ -1325,7 +1325,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1303374131}
   - {fileID: 2007307223}
-  spawnInterval: 10
+  spawnInterval: 4
   enemiesPerWave: 3
   detectionRange: 50
 --- !u!212 &1655707473
@@ -1388,7 +1388,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655707471}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.06, y: 0.07, z: 0}
+  m_LocalPosition: {x: 9.2, y: -0.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
