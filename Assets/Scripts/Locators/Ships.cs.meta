@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 089b4ab98588fc947a8432d0625fd44f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - player: {fileID: 4316213691594595366, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}
+  - shipsLocator: {fileID: 6490916488361554063, guid: 1729eea585b539d4ab52c6fcfb6172bb, type: 3}
+  - shipsPoint: {fileID: 3050485612790085830, guid: 1aefcc976a21dc24c939e8c7702c247e, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

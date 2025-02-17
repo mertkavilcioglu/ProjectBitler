@@ -132,7 +132,7 @@ MonoBehaviour:
   cross: {fileID: 1538570414}
   bullet: {fileID: 5783169755573777835, guid: fb105f4ea29bd8f478d1de694b518c0e, type: 3}
   firePoint: {fileID: 1241082983}
-  fireRate: 0.5
+  fireRate: 0.25
 --- !u!1 &1538570414
 GameObject:
   m_ObjectHideFlags: 0
