@@ -5,24 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
-    //public int checkpointID;
+    public int checkpointID;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            string activeScene = SceneManager.GetActiveScene().name;
-            PlayerPrefs.SetString("LevelSaved", activeScene);
-            Debug.Log(activeScene);
-            gameObject.SetActive(false);
-            /*
-            PlayerPrefs.SetInt("Last Checkpoint", checkpointID);
-            PlayerPrefs.Save();
+            PlayerPrefs.SetInt("LastCheckpoint", checkpointID);
             
             Vector3 checkpointPos = transform.position;
             PlayerPrefs.SetFloat("CheckpointX", checkpointPos.x);
             PlayerPrefs.SetFloat("CheckpointY", checkpointPos.y);
             PlayerPrefs.SetFloat("CheckpointZ", checkpointPos.z);
-            PlayerPrefs.Save();*/
+            PlayerPrefs.Save();
+            Debug.Log($"Checkpoint {checkpointID} saved at position: {checkpointPos}");
+
+            GetComponent<Collider2D>().enabled = false; // gameobjecti silmek yerine collider disable ediyo degistirilebilir
         }
     }
 }

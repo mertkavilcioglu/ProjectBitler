@@ -1,22 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class GameOverScreen : MonoBehaviour
 {
     public void Restart()
     {
-        if (PlayerPrefs.HasKey("LevelSaved"))
-        {
-            string levelToLoad = PlayerPrefs.GetString("LevelSaved");
-            SceneManager.LoadScene(levelToLoad);
-        }
+        SceneManager.LoadScene("Boss");
     }
 
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("Menu");
     }
-    
 }
