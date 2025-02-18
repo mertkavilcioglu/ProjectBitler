@@ -7,7 +7,11 @@ public class GameOverScreen : MonoBehaviour
 {
     public void Restart()
     {
-        SceneManager.LoadScene("Boss");
+        if (PlayerPrefs.HasKey("LevelSaved"))
+        {
+            string levelToLoad = PlayerPrefs.GetString("LevelSaved");
+            SceneManager.LoadScene(levelToLoad);
+        }
     }
 
     public void ReturnToMenu()
