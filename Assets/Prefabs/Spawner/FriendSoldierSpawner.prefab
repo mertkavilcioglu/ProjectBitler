@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51337ba8d62d6514fbb6f04bb80315cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FriendSoldierPrefab: {fileID: 3946551268325560655, guid: b63b98cd23ab21243bc7f80bacd0d115, type: 3}
+  FriendSoldierPrefab: {fileID: 9152707831780165748, guid: 2f5eba3bfb4580e4093b55d14738143b, type: 3}
   FriendSoldierInterval: 3
   MaxFriendSoldierCount: 15
   friendSoldierSpawnPoint: {fileID: 2223749830871179562}
