@@ -1,90 +1,80 @@
+
 using UnityEngine;
 
-public class ArcherEnemy : MonoBehaviour
+public class ArcherEnemy : MonoBehaviour 
 {
     public float playerDetectionRange = 8f;
-    public float yeniceriDetectionRange = 10f;
-    public float attackRange = 1f;
-    public float attackCooldown = 1f;
-    private Transform playerPos;
-    public Transform currentTarget;
-    public float speed;
-    private float lastAttackTime;
-    private bool isInAttackRange = false;
-    Animator animator;
-    private bool isAttacking = false;
-    SpriteRenderer spriteRenderer;
+    public float friendSoldierDetectionRange = 10f;
+    
+    public float shootRange = 10f;
+    public float speed = 3f;
 
+    [HideInInspector]
+    public Transform currentTarget;
+    
+    private Transform playerTransform;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, playerPos.position);
-
+        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
         if (distanceToPlayer <= playerDetectionRange)
         {
-            currentTarget = playerPos;
+            currentTarget = playerTransform;
         }
         else
         {
-            FindNearestYeniceri();
+            FindNearestFriendSoldier();
         }
-
-        if (currentTarget == null) return;
-
+        
+        if (currentTarget == null)
+        {
+            animator.SetBool("IsRange", false);
+            animator.SetBool("IsFiring", false);
+            return;
+        }
+        else
+        {
+            animator.SetBool("IsRange", true);
+        }
+        
         float distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
-        if (distanceToTarget > attackRange)
+
+        if (distanceToTarget > shootRange)
         {
-            isInAttackRange = false;
-            transform.position = Vector2.MoveTowards(
-                transform.position,
-                currentTarget.position,
-                speed * Time.deltaTime
-            );
-            animator.Play("Base Layer.enemy2_walk");
+            animator.SetBool("IsFiring", false);
+            transform.position = Vector2.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
         }
         else
         {
-            isInAttackRange = true;
-            StartAttack();
+            animator.SetBool("IsFiring", true);
         }
     }
 
-    void FindNearestYeniceri()
+    void FindNearestFriendSoldier()
     {
-        GameObject[] yeniceris = GameObject.FindGameObjectsWithTag("FriendSoldier");
+        GameObject[] friendSoldiers = GameObject.FindGameObjectsWithTag("FriendSoldier");
         float nearestDistance = Mathf.Infinity;
-        Transform nearestYeniceri = null;
+        Transform nearestTarget = null;
 
-        foreach (GameObject yeniceri in yeniceris)
+        foreach (GameObject soldier in friendSoldiers)
         {
-            float distance = Vector2.Distance(transform.position, yeniceri.transform.position);
-            if (distance < nearestDistance && distance <= yeniceriDetectionRange)
+            float distance = Vector2.Distance(transform.position, soldier.transform.position);
+            if (distance < nearestDistance && distance <= friendSoldierDetectionRange)
             {
                 nearestDistance = distance;
-                nearestYeniceri = yeniceri.transform;
+                nearestTarget = soldier.transform;
             }
         }
 
-        currentTarget = nearestYeniceri;
-    }
-
-    void StartAttack()
-    {
-        animator.Play("Base Layer.enemy2_attack");
-        Debug.Log("Enemy is attacking!");
-        float attackAnimationLength = animator.GetCurrentAnimatorStateInfo(0).length;
-        Invoke("ResetAttack", attackAnimationLength);
-    }
-
-    void ResetAttack()
-    {
-        isAttacking = false;
+        currentTarget = nearestTarget;
     }
 }
