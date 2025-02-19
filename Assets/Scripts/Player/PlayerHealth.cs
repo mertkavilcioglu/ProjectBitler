@@ -64,7 +64,6 @@ public class PlayerHealth : MonoBehaviour
         if (!isDead)
         {
             isDead = true;
-            Freezer.Instance.FreezeGame();
             animator.SetBool("IsDead", true);
             StartCoroutine(HandleDeath());
         }
@@ -75,7 +74,12 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         Destroy(gameObject);
-        
+
+        string currentScene = SceneManager.GetActiveScene().name;
+        PlayerPrefs.SetString("LastActiveScene", currentScene);
+        PlayerPrefs.Save();
+
         SceneManager.LoadScene("YouDiedRetry");
-    }
+    }
+
 }
