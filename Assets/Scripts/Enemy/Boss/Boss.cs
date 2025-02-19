@@ -15,7 +15,17 @@ public class Boss : MonoBehaviour
     Animator animator;
     private bool isPlayerInRange;
     private bool canSpawnEnemies = true;
+    
+    AudioSource audioSource;
 
+    private void Awake()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+    }
+
+    public AudioClip SpawnBoss;
+    public AudioClip DeathBoss;
+    
     private void Start()
     {
         if (animator == null)
@@ -47,6 +57,7 @@ public class Boss : MonoBehaviour
             {
                 animator.SetBool("IsSummoning", true);
                 yield return new WaitForSeconds(1f);
+                audioSource.PlayOneShot(SpawnBoss);
                 animator.SetBool("IsSummoning", false);
 
                 for (int i = 0; i < enemiesPerWave; i++)
@@ -55,6 +66,7 @@ public class Boss : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(spawnInterval);
+            
         }
     }
     private void SpawnEnemy()
