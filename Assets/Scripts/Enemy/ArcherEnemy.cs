@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class ArcherEnemy : MonoBehaviour 
@@ -8,21 +7,21 @@ public class ArcherEnemy : MonoBehaviour
     
     public float shootRange = 10f;
     public float speed = 3f;
-
+    
     [HideInInspector]
     public Transform currentTarget;
     
     private Transform playerTransform;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-
+    
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
+    
     void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
@@ -47,7 +46,10 @@ public class ArcherEnemy : MonoBehaviour
         }
         
         float distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
-
+        
+        // Rotate towards target using rotation instead of scale
+        FlipCharacter();
+        
         if (distanceToTarget > shootRange)
         {
             animator.SetBool("IsFiring", false);
@@ -58,13 +60,28 @@ public class ArcherEnemy : MonoBehaviour
             animator.SetBool("IsFiring", true);
         }
     }
-
+    
+    void FlipCharacter()
+    {
+        Vector3 targetPosition = currentTarget.position;
+        Vector3 archerPosition = transform.position;
+        
+        if (targetPosition.x > archerPosition.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);  // Değişti: 0 -> 180
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);    // Değişti: 180 -> 0
+        }
+    }
+    
     void FindNearestFriendSoldier()
     {
         GameObject[] friendSoldiers = GameObject.FindGameObjectsWithTag("FriendSoldier");
         float nearestDistance = Mathf.Infinity;
         Transform nearestTarget = null;
-
+        
         foreach (GameObject soldier in friendSoldiers)
         {
             float distance = Vector2.Distance(transform.position, soldier.transform.position);
@@ -74,7 +91,7 @@ public class ArcherEnemy : MonoBehaviour
                 nearestTarget = soldier.transform;
             }
         }
-
+        
         currentTarget = nearestTarget;
     }
 }

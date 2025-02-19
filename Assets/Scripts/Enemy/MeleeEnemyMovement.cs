@@ -49,6 +49,9 @@ public class MeleeEnemyMovement : MonoBehaviour
             return;
         }
 
+        // Düşmanın hedefe doğru dönmesi
+        FlipCharacter();
+
         float distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
         if (distanceToTarget > attackRange)
         {
@@ -79,6 +82,21 @@ public class MeleeEnemyMovement : MonoBehaviour
                 lastAttackTime = Time.time;
                 AttackTarget();
             }
+        }
+    }
+
+    void FlipCharacter()
+    {
+        Vector3 targetPosition = currentTarget.position;
+        Vector3 enemyPosition = transform.position;
+        
+        if (targetPosition.x > enemyPosition.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
@@ -133,6 +151,7 @@ public class MeleeEnemyMovement : MonoBehaviour
     {
         isAttacking = false;
     }
+    
     public void BossSceneRange(float newPlayerDetection)
     {
         playerDetectionRange = newPlayerDetection;

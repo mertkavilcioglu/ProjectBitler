@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Yeniceri : MonoBehaviour
+public class Yeniceri : MonoBehaviour 
 {
     public float detectionRange = 10f;
     public float attackRange = 1f;
@@ -40,6 +40,9 @@ public class Yeniceri : MonoBehaviour
             return;
         }
 
+        // Düşmana doğru dön
+        FlipCharacter();
+
         if (distanceToEnemy > attackRange)
         {
             isAttacking = false;
@@ -60,6 +63,23 @@ public class Yeniceri : MonoBehaviour
                 lastAttackTime = Time.time;
                 AttackEnemy();
             }
+        }
+    }
+
+    void FlipCharacter()
+    {
+        if (currentTarget == null) return;
+
+        Vector3 targetPosition = currentTarget.position;
+        Vector3 yeniceriPosition = transform.position;
+        
+        if (targetPosition.x > yeniceriPosition.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
@@ -86,7 +106,7 @@ public class Yeniceri : MonoBehaviour
     {
         if (currentTarget == null) return;
 
-        Debug.Log("Yeniceri sald�r�yor!");
+        Debug.Log("Yeniceri saldırıyor!");
         animator.SetBool("IsAttacking", true);
 
         EnemyHealth enemyHealth = currentTarget.GetComponent<EnemyHealth>();

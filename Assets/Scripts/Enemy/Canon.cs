@@ -21,11 +21,14 @@ public class Canon : MonoBehaviour
 
     private void Update()
     {
+        // Oyuncu ve müttefik askerleri bul
         GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
         GameObject[] friendSoldierObjs = GameObject.FindGameObjectsWithTag("FriendSoldier");
 
+        // İki diziyi tek bir diziye birleştir
         GameObject[] targets = playerObjs.Concat(friendSoldierObjs).ToArray();
 
+        // En yakın hedefi bul
         GameObject nearestTarget = null;
         float nearestDistance = Mathf.Infinity;
 
@@ -39,14 +42,18 @@ public class Canon : MonoBehaviour
             }
         }
 
+        // En yakın hedef menzil içindeyse
         if (nearestTarget != null && nearestDistance <= range)
         {
             isFiring = true;
 
-            // Eğer ilk kez menzile girdiyse, bekleme başlat
+            // Topu hedefin X konumuna göre flip yap (Y ekseni etrafında döndür)
+            FlipCanon(nearestTarget.transform);
+
+            // İlk kez menzile girdiyse 2 saniye gecikmeli ateş
             if (firstTimeInRange)
             {
-                firstTimeInRange = false; // Artık ilk giriş değil
+                firstTimeInRange = false;
                 StartCoroutine(DelayedFire(nearestTarget.transform.position));
             }
             else if (Time.time >= nextFireTime)
@@ -58,9 +65,10 @@ public class Canon : MonoBehaviour
         else
         {
             isFiring = false;
-            firstTimeInRange = true; // Oyuncu menzilden çıktığında tekrar aktif et
+            firstTimeInRange = true; 
         }
 
+        
         if (anim != null)
         {
             anim.SetBool("IsFiring", isFiring);
@@ -69,20 +77,37 @@ public class Canon : MonoBehaviour
 
     IEnumerator DelayedFire(Vector2 targetPosition)
     {
-        yield return new WaitForSeconds(2f); // **İlk girişte 2 saniye bekle**
+        yield return new WaitForSeconds(2f);
         FireCanonBall(targetPosition);
-        nextFireTime = Time.time + fireRate; 
+        nextFireTime = Time.time + fireRate;
     }
 
     void FireCanonBall(Vector2 targetPosition)
-    {   
+    {
         if (canonBallPrefab != null && firePoint != null)
         {
             GameObject ball = Instantiate(canonBallPrefab, firePoint.position, Quaternion.identity);
 
+            
             Vector2 direction = (targetPosition - (Vector2)firePoint.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             ball.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+    }
+
+   
+    private void FlipCanon(Transform target)
+    {
+        
+        if (target.position.x >= transform.position.x)
+        {
+            
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else
+        {
+            
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
     }
 }

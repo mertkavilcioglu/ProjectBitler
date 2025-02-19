@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections;
 
-public class FriendlyCanon : MonoBehaviour
+public class FriendlyCanon : MonoBehaviour 
 {
     private Animator anim;
     public GameObject canonBallPrefab;
@@ -16,16 +16,16 @@ public class FriendlyCanon : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>(); // Animator bileşenini al
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
         GameObject[] enemyObjs = GameObject.FindGameObjectsWithTag("Enemy");
-
+        
         GameObject nearestTarget = null;
         float nearestDistance = Mathf.Infinity;
-
+        
         foreach (GameObject enemy in enemyObjs)
         {
             float distance = Vector2.Distance(firePoint.position, enemy.transform.position);
@@ -35,10 +35,13 @@ public class FriendlyCanon : MonoBehaviour
                 nearestTarget = enemy;
             }
         }
-
+        
         if (nearestTarget != null && nearestDistance <= range)
         {
             isFire = true;
+            
+            // Düşmana doğru dön
+            FlipCanon(nearestTarget.transform.position);
 
             // Eğer ilk kez menzile girdiyse, 2 saniye bekleyip ateş etmeli
             if (firstTimeInRange)
@@ -57,10 +60,24 @@ public class FriendlyCanon : MonoBehaviour
             isFire = false;
             firstTimeInRange = true; // Enemy menzilden çıkınca sıfırla
         }
-
+        
         if (anim != null)
         {
-            anim.SetBool("IsFire", isFire); // **IsFire parametresi ile animasyon kontrolü**
+            anim.SetBool("IsFire", isFire);
+        }
+    }
+
+    void FlipCanon(Vector2 targetPosition)
+    {
+        Vector3 canonPosition = transform.position;
+        
+        if (targetPosition.x > canonPosition.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0); 
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0); 
         }
     }
 
@@ -72,15 +89,14 @@ public class FriendlyCanon : MonoBehaviour
     }
 
     void FireCanonBall(Vector2 targetPosition)
-    {   
+    {
         if (canonBallPrefab != null && firePoint != null)
         {
             GameObject ball = Instantiate(canonBallPrefab, firePoint.position, Quaternion.identity);
-
+            
             Vector2 direction = (targetPosition - (Vector2)firePoint.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             ball.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
 }
-
