@@ -10,6 +10,13 @@ public class Boss : MonoBehaviour
     [SerializeField] private int enemiesPerWave = 3;
 
     [SerializeField] private float detectionRange;
+    
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
 
     private Transform player;
     Animator animator;
@@ -26,6 +33,10 @@ public class Boss : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         StartCoroutine(SpawnEnemiesRoutine());
+        
+        
+            audioManager.PlaySFX(audioManager.boss);
+        
     }
 
     private void Update()
@@ -34,6 +45,8 @@ public class Boss : MonoBehaviour
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         isPlayerInRange = distanceToPlayer <= detectionRange;
+        
+        
         
     }
 
