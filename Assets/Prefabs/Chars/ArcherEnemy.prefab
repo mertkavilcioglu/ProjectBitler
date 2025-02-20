@@ -140,12 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2426f97574df8c149aaf27c1f1d17bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetectionRange: 8
-  yeniceriDetectionRange: 10
-  attackRange: 15
-  attackCooldown: 0
-  currentTarget: {fileID: 0}
+  playerDetectionRange: 30
+  friendSoldierDetectionRange: 30
+  shootRange: 20
   speed: 3
+  currentTarget: {fileID: 0}
 --- !u!114 &8814322057949814709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 2112524275155514533, guid: 523ea010002bfe040b56d6242ec53ab7, type: 3}
   arrowPos: {fileID: 8814322058403232847}
+  shootInterval: 2
 --- !u!114 &8814322057569312477
 MonoBehaviour:
   m_ObjectHideFlags: 0

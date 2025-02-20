@@ -6,9 +6,9 @@ public class Castle : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform player;
-    [SerializeField] private Transform castleLocator;
     [SerializeField] private Transform castlePoint;
-    // Start is called before the first frame update
+    [SerializeField] private RectTransform castleLocator; // UI için RectTransform
+
     private void Start()
     {
         if (player == null)
@@ -18,7 +18,7 @@ public class Castle : MonoBehaviour
             castlePoint = GameObject.Find("CastlePoint")?.transform;
 
         if (castleLocator == null)
-            castleLocator = GameObject.Find("CastleLocator")?.GetComponent<Transform>();
+            castleLocator = GameObject.Find("CastleLocator")?.GetComponent<RectTransform>();
     }
 
     private void Update()
@@ -28,7 +28,8 @@ public class Castle : MonoBehaviour
         Vector2 direction = (castlePoint.position - player.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Oku döndür (Canvas içinde olduğu için localEulerAngles kullanılıyor)
-        castleLocator.localEulerAngles = new Vector3(0, 0, angle + 17);
+        // Oku döndür (UI için rotation kullanılıyor)
+        castleLocator.rotation = Quaternion.Euler(0, 0, angle + 19);
+        castleLocator.anchoredPosition = Vector2.zero;
     }
 }
