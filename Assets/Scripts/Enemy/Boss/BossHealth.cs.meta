@@ -3,7 +3,13 @@ guid: 3a0aa2547b6b958489b8d6e230effdf3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - healthSlider: {instanceID: 0}
+  - delayedHealthSlider: {instanceID: 0}
+  - bossNameText: {instanceID: 0}
+  - healthBarCanvas: {instanceID: 0}
+  - damageZone: {instanceID: 0}
+  - DeathBoss: {fileID: 8300000, guid: ee54f9466a51b44f9b6ce3a82933ec57, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

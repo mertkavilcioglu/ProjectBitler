@@ -1423,6 +1423,7 @@ MonoBehaviour:
   fadeInDuration: 1
   damageZone: {fileID: 2117875131}
   healthThreshold: 500
+  DeathBoss: {fileID: 8300000, guid: ee54f9466a51b44f9b6ce3a82933ec57, type: 3}
 --- !u!61 &1655707476
 BoxCollider2D:
   m_ObjectHideFlags: 0

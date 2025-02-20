@@ -21,6 +21,7 @@ public class Boss : MonoBehaviour
     private void Awake()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(SpawnBoss);
     }
 
     public AudioClip SpawnBoss;
@@ -57,7 +58,7 @@ public class Boss : MonoBehaviour
             {
                 animator.SetBool("IsSummoning", true);
                 yield return new WaitForSeconds(1f);
-                audioSource.PlayOneShot(SpawnBoss);
+                
                 animator.SetBool("IsSummoning", false);
 
                 for (int i = 0; i < enemiesPerWave; i++)
