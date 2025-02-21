@@ -15,6 +15,13 @@ public class Gun : MonoBehaviour
     public float fireRate = 0.5f;   
     private float nextFireTime = 0f;
 private bool isShooting = false;
+
+AudioManager audioManager;
+
+private void Awake()
+{
+    audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+}
     void Update()
     {
         
@@ -51,6 +58,8 @@ private bool isShooting = false;
     {
         if(isShooting==true)
         Instantiate(bullet, firePoint.position, transform.rotation);
+        audioManager.PlaySFX(audioManager.shooting);// bu olmadı düzelticem -.-
+        
     }
 }
 

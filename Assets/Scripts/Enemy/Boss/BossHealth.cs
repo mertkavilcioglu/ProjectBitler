@@ -27,15 +27,14 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private GameObject damageZone;
     [SerializeField] private float healthThreshold;
     
-    AudioSource audioSource;
+    AudioManager audioManager;
 
     private void Awake()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
-        
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
+
     
-    public AudioClip DeathBoss;
     
     private float delayedTimer;
     private bool isDead = false;
@@ -165,7 +164,7 @@ public class BossHealth : MonoBehaviour
         speed = 0f;
         
         animator.SetBool("IsDead", true);
-        audioSource.PlayOneShot(DeathBoss);
+        audioManager.PlaySFX(audioManager.death);
         StartCoroutine(HandleDeath());
     }
 

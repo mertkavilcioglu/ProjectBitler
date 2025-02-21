@@ -12,11 +12,15 @@ public class EnemyHealth : MonoBehaviour
     public Vector3 healthBarOffset;
 
     private HealthBar healthBarInstance;
+    
+    AudioManager audioManager;
 
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         currentHealth = maxHealth;
     }
+    
 
     private void Start()
     {
@@ -74,6 +78,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (healthBarInstance != null)
         {
+            audioManager.PlaySFX(audioManager.death);
             Destroy(healthBarInstance.gameObject);
         }
         Destroy(gameObject);

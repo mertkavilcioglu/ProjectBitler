@@ -16,16 +16,18 @@ public class Boss : MonoBehaviour
     private bool isPlayerInRange;
     private bool canSpawnEnemies = true;
     
-    AudioSource audioSource;
+    AudioManager audioManager;
 
     private void Awake()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.PlayOneShot(SpawnBoss);
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
+        audioManager.PlaySFX(audioManager.background);
     }
 
-    public AudioClip SpawnBoss;
-    public AudioClip DeathBoss;
+    
+
+    
     
     private void Start()
     {

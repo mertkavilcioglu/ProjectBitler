@@ -17,6 +17,13 @@ public class MeleeEnemyMovement : MonoBehaviour
     private float lastAttackTime;
     private bool isAttacking = false;
     Animator animator;
+    
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void Start()
     {
@@ -107,6 +114,7 @@ public class MeleeEnemyMovement : MonoBehaviour
     {
         animator.Play("Base Layer.enemy1_attack");
         //Debug.Log($"Enemy saldırıyor: {currentTarget.name}!");
+        audioManager.PlaySFX(audioManager.sword);
 
         if (currentTarget == playerPos)
         {

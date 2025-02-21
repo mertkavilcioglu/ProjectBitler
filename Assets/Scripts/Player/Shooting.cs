@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    
     private Camera mainCam;
     private Vector3 mousePos;  // "mousPos" yerine doğru yazım: "mousePos"
+    
+    
 
     // Start is called before the first frame update
     void Start()
