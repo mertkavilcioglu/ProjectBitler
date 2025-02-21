@@ -64,7 +64,7 @@ public class PlayerHealth : MonoBehaviour
         if (!isDead)
         {
             isDead = true;
-            Freezer.Instance.FreezeGame();
+            //Freezer.Instance.FreezeGame();
             animator.SetBool("IsDead", true);
             StartCoroutine(HandleDeath());
         }
