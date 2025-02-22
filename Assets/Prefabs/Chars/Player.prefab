@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 4316213691594595365}
   - component: {fileID: 4316213691594595371}
   - component: {fileID: 8066237004392531413}
+  - component: {fileID: 943567930}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -247,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4316213691594595361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.47, y: -1.8, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -409,6 +410,18 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 2578933279476605361}
   healthBarOffset: {x: -3, y: 3, z: 0}
   animator: {fileID: 4316213691594595360}
+--- !u!114 &943567930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316213691594595361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d30bcad25ca4645ba0d6dc41af107f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2020063535
 PrefabInstance:
   m_ObjectHideFlags: 0

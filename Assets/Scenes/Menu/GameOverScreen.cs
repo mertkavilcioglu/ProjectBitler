@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class GameOverScreen : MonoBehaviour
 {
@@ -14,5 +12,4 @@ public class GameOverScreen : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
-    
 }

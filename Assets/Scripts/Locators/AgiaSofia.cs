@@ -6,12 +6,11 @@ public class AgiaSofia : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform player; // Oyuncu referansı
-    [SerializeField] private Transform agiaSofiaLocator; // Pusula içindeki yön oku
     [SerializeField] private Transform agiaSofiaPoint; // Ayasofya hedefi
+    [SerializeField] private RectTransform agiaSofiaLocator; // UI için yön oku
 
     private void Start()
     {
-        // Oyuncu ve hedefi sahnede otomatik bul
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
@@ -19,18 +18,18 @@ public class AgiaSofia : MonoBehaviour
             agiaSofiaPoint = GameObject.Find("AgiaSofiaPoint")?.transform;
 
         if (agiaSofiaLocator == null)
-            agiaSofiaLocator = GameObject.Find("AgiaSofiaLocator")?.GetComponent<Transform>();
+            agiaSofiaLocator = GameObject.Find("AgiaSofiaLocator")?.GetComponent<RectTransform>();
     }
 
     private void Update()
     {
         if (player == null || agiaSofiaLocator == null || agiaSofiaPoint == null) return;
 
-        // Oyuncudan hedefe doğru yönü hesapla
         Vector2 direction = (agiaSofiaPoint.position - player.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Oku döndür (Canvas içinde olduğu için localEulerAngles kullanılıyor)
-        agiaSofiaLocator.localEulerAngles = new Vector3(0, 0, angle - 41);
+        // Oku döndür (UI için rotation kullanılıyor)
+        agiaSofiaLocator.rotation = Quaternion.Euler(0, 0, angle - 41);
+        agiaSofiaLocator.anchoredPosition = Vector2.zero;
     }
 }
