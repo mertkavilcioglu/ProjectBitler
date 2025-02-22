@@ -5,14 +5,7 @@ using UnityEngine.Audio;
 
 public class SettingsMenuManager : MonoBehaviour
 {
-    AudioSource audioSource;
-
-    private void Awake()
-    {
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.PlayOneShot(MenuMusic);
-    }
-    public AudioClip MenuMusic;
+    
     public AudioMixer audioMixer;
     public void SetVolume(float volume)
     {

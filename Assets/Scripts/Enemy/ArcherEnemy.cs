@@ -14,6 +14,7 @@ public class ArcherEnemy : MonoBehaviour
     Animator animator;
     private bool isAttacking = false;
     SpriteRenderer spriteRenderer;
+    
 
 
     void Start()

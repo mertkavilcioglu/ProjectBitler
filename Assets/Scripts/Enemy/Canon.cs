@@ -55,6 +55,7 @@ public class Canon : MonoBehaviour
             if (firstTimeInRange)
             {
                 firstTimeInRange = false; // Artık ilk giriş değil
+                audioManager.PlaySFX(audioManager.cannon);
                 StartCoroutine(DelayedFire(nearestTarget.transform.position));
             }
             else if (Time.time >= nextFireTime)
@@ -80,6 +81,7 @@ public class Canon : MonoBehaviour
     {
         yield return new WaitForSeconds(2f); // **İlk girişte 2 saniye bekle**
         FireCanonBall(targetPosition);
+        audioManager.PlaySFX(audioManager.cannon);
         nextFireTime = Time.time + fireRate; 
     }
 
@@ -87,6 +89,7 @@ public class Canon : MonoBehaviour
     {   
         if (canonBallPrefab != null && firePoint != null)
         {
+            audioManager.PlaySFX(audioManager.cannon);
             GameObject ball = Instantiate(canonBallPrefab, firePoint.position, Quaternion.identity);
 
             Vector2 direction = (targetPosition - (Vector2)firePoint.position).normalized;

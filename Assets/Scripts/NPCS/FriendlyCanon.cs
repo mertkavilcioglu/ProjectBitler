@@ -13,15 +13,16 @@ public class FriendlyCanon : MonoBehaviour
     private float nextFireTime = 0f;
     private bool isFire = false;
     private bool firstTimeInRange = true; // Enemy ilk kez menzile girdi mi?
-    
-    AudioSource audioSource;
+    AudioManager audioManager;
 
     private void Awake()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     
-    public AudioClip cannonBall;
+    
+    
+    
 
 
     private void Start()
@@ -54,11 +55,13 @@ public class FriendlyCanon : MonoBehaviour
             if (firstTimeInRange)
             {
                 firstTimeInRange = false; // İlk giriş tamamlandı
+                audioManager.PlaySFX(audioManager.cannon);
                 StartCoroutine(DelayedFire(nearestTarget.transform.position));
             }
             else if (Time.time >= nextFireTime)
             {
                 nextFireTime = Time.time + fireRate;
+                audioManager.PlaySFX(audioManager.cannon);
                 
                 FireCanonBall(nearestTarget.transform.position);
             }
@@ -80,14 +83,16 @@ public class FriendlyCanon : MonoBehaviour
         yield return new WaitForSeconds(2f); // İlk girişte 2 saniye bekle
         FireCanonBall(targetPosition);
         nextFireTime = Time.time + fireRate; // Normal ateş etme döngüsüne gir
+        audioManager.PlaySFX(audioManager.cannon);
     }
 
     void FireCanonBall(Vector2 targetPosition)
     {   
         if (canonBallPrefab != null && firePoint != null)
         {
+            audioManager.PlaySFX(audioManager.cannon);
             GameObject ball = Instantiate(canonBallPrefab, firePoint.position, Quaternion.identity);
-            audioSource.PlayOneShot(cannonBall);
+            
 
             Vector2 direction = (targetPosition - (Vector2)firePoint.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - MenuMusic: {fileID: 8300000, guid: 4255c9ca85a66407a98b603667d55fd4, type: 3}
+  - MenuMusic: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -12,8 +12,10 @@ public class YeniceriHealth : MonoBehaviour
 
     private HealthBar healthBarInstance;
 
+    AudioManager audioManager;
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         currentHealth = maxHealth;
     }
 
@@ -68,6 +70,7 @@ public class YeniceriHealth : MonoBehaviour
     {
         if (healthBarInstance != null)
         {
+            audioManager.PlaySFX(audioManager.death);
             Destroy(healthBarInstance.gameObject);
         }
         Destroy(gameObject);

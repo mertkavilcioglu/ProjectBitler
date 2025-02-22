@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    AudioSource audioSource;
+    AudioManager audioManager;
 
     private void Awake()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.PlayOneShot(MenuMusic);
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
     }
-    public AudioClip MenuMusic;
+    
     public void PlayGame()
     {
         

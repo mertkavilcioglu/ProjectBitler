@@ -152,7 +152,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1410,7 +1410,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.18
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1575,13 +1575,14 @@ MonoBehaviour:
   SFXSource: {fileID: 80161893}
   background: {fileID: 8300000, guid: 3418ef1c233b04b38b75789bb12bae8c, type: 3}
   death: {fileID: 8300000, guid: ee54f9466a51b44f9b6ce3a82933ec57, type: 3}
-  sword: {fileID: 8300000, guid: 72de2a353cacc46d3aad1d65f2599d2a, type: 3}
+  swordEnemy: {fileID: 8300000, guid: 72de2a353cacc46d3aad1d65f2599d2a, type: 3}
   cannon: {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
   boss: {fileID: 0}
   menu: {fileID: 8300000, guid: 4255c9ca85a66407a98b603667d55fd4, type: 3}
   shooting: {fileID: 8300000, guid: 4310474905e266640852f43bd609a1a4, type: 3}
   battle: {fileID: 8300000, guid: 90d3b207d51ba48f4a8879bcc1c27a17, type: 3}
   bow: {fileID: 8300000, guid: 8fd2d73dfe9e846679cfdf508258512f, type: 3}
+  swordFriend: {fileID: 8300000, guid: ebcbb664018f947728cb9b67468b0f48, type: 3}
 --- !u!4 &1627875898
 Transform:
   m_ObjectHideFlags: 0

@@ -114,7 +114,7 @@ public class MeleeEnemyMovement : MonoBehaviour
     {
         animator.Play("Base Layer.enemy1_attack");
         //Debug.Log($"Enemy saldırıyor: {currentTarget.name}!");
-        audioManager.PlaySFX(audioManager.sword);
+        audioManager.PlaySFX(audioManager.swordEnemy);
 
         if (currentTarget == playerPos)
         {
