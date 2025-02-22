@@ -15,9 +15,18 @@ public class Boss : MonoBehaviour
     Animator animator;
     private bool isPlayerInRange;
     private bool canSpawnEnemies = true;
+    
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
+    }
 
     private void Start()
     {
+        
         if (animator == null)
         {
             animator = GetComponent<Animator>();
@@ -59,6 +68,7 @@ public class Boss : MonoBehaviour
     }
     private void SpawnEnemy()
     {
+        audioManager.PlaySFX(audioManager.bossScream);
         if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0) return;
 
         GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];

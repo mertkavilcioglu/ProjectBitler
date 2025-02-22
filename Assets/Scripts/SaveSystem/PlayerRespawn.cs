@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
+    }
     void Start()
     {
         if (PlayerPrefs.HasKey("LastCheckpoint"))

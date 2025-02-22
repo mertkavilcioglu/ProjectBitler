@@ -15,6 +15,7 @@ public class ArcherEnemy : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     
+    
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;

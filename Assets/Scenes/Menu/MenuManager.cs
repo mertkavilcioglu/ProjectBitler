@@ -10,7 +10,14 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(newGameLevel);
     }
+    AudioManager audioManager;
+    
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
+    }
     public void LoadGame()
     {
         if(PlayerPrefs.HasKey("LevelSaved"))

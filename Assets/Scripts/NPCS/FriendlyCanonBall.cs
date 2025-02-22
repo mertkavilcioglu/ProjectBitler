@@ -9,6 +9,7 @@ public class FriendlyCanonBall : MonoBehaviour
     public float explosionRadius = 2f;  
 
     private Rigidbody2D rb;
+    
 
     private void Awake()
     {

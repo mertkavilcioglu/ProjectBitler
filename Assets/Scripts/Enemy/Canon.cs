@@ -13,6 +13,12 @@ public class Canon : MonoBehaviour
     private float nextFireTime = 0f;
     private bool isFiring = false; 
     private bool firstTimeInRange = true; // Oyuncu ilk kez menzile girdi mi?
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -87,6 +93,7 @@ public class Canon : MonoBehaviour
         if (canonBallPrefab != null && firePoint != null)
         {
             GameObject ball = Instantiate(canonBallPrefab, firePoint.position, Quaternion.identity);
+            audioManager.PlaySFX(audioManager.cannon);
 
             
             Vector2 direction = (targetPosition - (Vector2)firePoint.position).normalized;
