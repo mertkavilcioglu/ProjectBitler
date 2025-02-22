@@ -18,6 +18,12 @@ public class MeleeEnemyMovement : MonoBehaviour
     private bool isAttacking = false;
     Animator animator;
 
+	AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     void Start()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -84,6 +90,7 @@ public class MeleeEnemyMovement : MonoBehaviour
 
     void FindNearestYeniceri()
     {
+		
         GameObject[] yeniceris = GameObject.FindGameObjectsWithTag("FriendSoldier");
         float nearestDistance = Mathf.Infinity;
         Transform nearestYeniceri = null;
@@ -105,6 +112,7 @@ public class MeleeEnemyMovement : MonoBehaviour
 
     void AttackTarget()
     {
+		
         animator.Play("Base Layer.enemy1_attack");
         //Debug.Log($"Enemy saldırıyor: {currentTarget.name}!");
 
