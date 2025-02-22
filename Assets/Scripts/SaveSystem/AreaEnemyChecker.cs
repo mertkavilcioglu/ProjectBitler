@@ -93,4 +93,8 @@ public class AreaEnemyChecker : MonoBehaviour
             Debug.Log($"Area {areaID}: {enemiesInArea.Count} enemies remaining");
         }
     }
+    public bool IsAreaCleared()
+    {
+        return enemiesInArea.Count == 0;
+    }
 }
