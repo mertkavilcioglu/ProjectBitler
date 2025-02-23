@@ -10,6 +10,10 @@ public class MissionManager : MonoBehaviour
     public TextMeshProUGUI mission2Text;
     public TextMeshProUGUI mission3Text;
 
+    private bool mission1Completed = false;
+    private bool mission2Completed = false;
+    private bool mission3Completed = false;
+
     private int completedMissions = 0; // Tamamlanan görev sayısı
 
     void Start()
@@ -23,22 +27,33 @@ public class MissionManager : MonoBehaviour
         switch (missionID)
         {
             case 1:
+                mission1Completed = true;
                 MarkMissionCompleted(mission1Text);
                 break;
             case 2:
+                mission2Completed = true;
                 MarkMissionCompleted(mission2Text);
                 break;
             case 3:
-                MarkMissionCompleted(mission3Text);
+                if (!mission3Completed && mission1Completed && mission2Completed) // 1 ve 2 tamamlanmışsa 3 açılabilir
+                {
+                    mission3Completed = true;
+                    MarkMissionCompleted(mission3Text);
+                }
                 break;
         }
 
         completedMissions++;
 
         // Eğer ilk iki görev tamamlandıysa Ayasofya görevinin rengini düzelt
-        if (completedMissions == 2)
+        if (mission1Completed && mission2Completed)
         {
             mission3Text.color = new Color(mission3Text.color.r, mission3Text.color.g, mission3Text.color.b, 1f);
+        }
+        if (mission3Completed)
+        {
+            mission3Completed = true;
+            MarkMissionCompleted(mission3Text);
         }
     }
 
