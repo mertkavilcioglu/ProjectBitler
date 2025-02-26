@@ -54,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.flipX = player.transform.position.x > transform.position.x;
+        //spriteRenderer.flipX = player.transform.position.x > transform.position.x;
     }
 
     public void TakeDamage(int damage)
