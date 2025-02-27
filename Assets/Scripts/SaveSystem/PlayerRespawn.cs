@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerRespawn : MonoBehaviour
 {
     AudioManager audioManager;
+    PlayerHealth playerHealth;
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        playerHealth = GetComponent<PlayerHealth>();
+
     }
     void Start()
     {
-        if (PlayerPrefs.HasKey("LastCheckpoint"))
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (PlayerPrefs.HasKey("LastCheckpoint") && currentScene == "Ayasofya_ic")
         {
             float x = PlayerPrefs.GetFloat("CheckpointX");
             float y = PlayerPrefs.GetFloat("CheckpointY");

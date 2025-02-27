@@ -13,7 +13,7 @@ public class ArcherShoot : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -53,7 +53,7 @@ public class ArcherShoot : MonoBehaviour
 
     void Shoot()
     {
-        audioManager.PlaySFX(audioManager.bow);
+        //audioManager.PlaySFX(audioManager.bow);
         Instantiate(arrow, arrowPos.position, Quaternion.identity);
     }
 }

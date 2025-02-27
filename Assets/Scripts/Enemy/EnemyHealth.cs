@@ -1,12 +1,14 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
 
     public int maxHealth = 100;
     private int currentHealth;
+    private Animator animator;
 
-  
     public GameObject healthBarPrefab;
    
     public Vector3 healthBarOffset;
@@ -17,7 +19,8 @@ public class EnemyHealth : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        animator = GetComponent<Animator>();
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         currentHealth = maxHealth;
     }
 
@@ -46,11 +49,6 @@ public class EnemyHealth : MonoBehaviour
 
     private void Update()
     {
-        /*
-        if (Freezer.Instance.IsGameFrozen)
-        {
-            return;
-        }*/
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
@@ -78,9 +76,16 @@ public class EnemyHealth : MonoBehaviour
     {
         if (healthBarInstance != null)
         {
-            audioManager.PlaySFX(audioManager.deathEnemy);
+            //audioManager.PlaySFX(audioManager.deathEnemy);
             Destroy(healthBarInstance.gameObject);
         }
+        StartCoroutine(HandleDeath());
+        
+    }
+    private IEnumerator HandleDeath()
+    {
+        animator.SetBool("IsDead", true);
+        yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
     }
 }

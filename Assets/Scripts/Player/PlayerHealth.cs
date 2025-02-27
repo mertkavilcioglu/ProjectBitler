@@ -44,6 +44,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        PlayerPrefs.SetString("LastActiveScene", currentScene);
+        PlayerPrefs.Save();
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -74,10 +81,6 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         Destroy(gameObject);
-
-        string currentScene = SceneManager.GetActiveScene().name;
-        PlayerPrefs.SetString("LastActiveScene", currentScene);
-        PlayerPrefs.Save();
 
         SceneManager.LoadScene("YouDiedRetry");
     }

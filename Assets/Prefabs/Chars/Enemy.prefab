@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28ae3096a43a234180fde6e823ea76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetectionRange: 15
+  playerDetectionRange: 5
   yeniceriDetectionRange: 30
   attackRange: 2
   attackCooldown: 1

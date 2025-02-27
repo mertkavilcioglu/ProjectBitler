@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     void Update()
     {
@@ -57,7 +57,7 @@ public class Gun : MonoBehaviour
     {
         if (isShooting == true)
         {
-            audioManager.PlaySFX(audioManager.shooting);
+            //audioManager.PlaySFX(audioManager.shooting);
             Instantiate(bullet, firePoint.position, transform.rotation);
         }
     }

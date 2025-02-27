@@ -22,7 +22,7 @@ public class MeleeEnemyMovement : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -79,7 +79,7 @@ public class MeleeEnemyMovement : MonoBehaviour
                 targetPosition,
                 speed * Time.deltaTime
             );
-            animator.Play("Base Layer.enemy1_walk");
+            animator.SetBool("IsWalking", true);
         }
         else
         {
@@ -130,9 +130,9 @@ public class MeleeEnemyMovement : MonoBehaviour
 
     void AttackTarget()
     {
-        animator.Play("Base Layer.enemy1_attack");
+        animator.SetBool("IsAttacking", true);
         //Debug.Log($"Enemy saldırıyor: {currentTarget.name}!");
-        audioManager.PlaySFX(audioManager.swordEnemy);
+        //audioManager.PlaySFX(audioManager.swordEnemy);
 
         if (currentTarget == playerPos)
         {
