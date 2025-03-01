@@ -78,7 +78,8 @@ public class EnemyHealth : MonoBehaviour
     {
         if (healthBarInstance != null)
         {
-            audioSource.PlayOneShot(deathSound);
+            audioSource.clip = deathSound;
+            audioSource.Play();
             Destroy(healthBarInstance.gameObject);
         }
         StartCoroutine(HandleDeath());
@@ -88,6 +89,7 @@ public class EnemyHealth : MonoBehaviour
     {
         
         animator.SetBool("IsDead", true);//ozge yapamamis?
+        audioSource.clip = deathSound;
         audioSource.PlayOneShot(deathSound);
         yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);

@@ -6,18 +6,18 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
     [Header("---------- Audio Clip ----------")]
-    //public AudioClip background;
-    //public AudioClip deathEnemy;
-    //public AudioClip swordEnemy;
-    //public AudioClip cannon;
-    //public AudioClip boss;
-    //public AudioClip menu;
-    //public AudioClip shooting;
-    //public AudioClip battle;
-    //public AudioClip bow;
-    //public AudioClip swordFriend;
-    //public AudioClip deathFriend;
-    //public AudioClip bossScream;
+    public AudioClip background;
+    public AudioClip deathEnemy;
+    public AudioClip swordEnemy;
+    public AudioClip cannon;
+    public AudioClip boss;
+    public AudioClip menu;
+    public AudioClip shooting;
+    public AudioClip battle;
+    public AudioClip bow;
+    public AudioClip swordFriend;
+    public AudioClip deathFriend;
+    public AudioClip bossScream;
 
 
     private void Start()
