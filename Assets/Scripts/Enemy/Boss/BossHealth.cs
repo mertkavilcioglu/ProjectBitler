@@ -31,12 +31,16 @@ public class BossHealth : MonoBehaviour
     private bool isDead = false;
     private Transform player;
     Animator animator;
-    AudioManager audioManager;
+    AudioSource audioSource;
 
-    private void Awake()
+    public void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        
+
     }
+    
+    public AudioClip bossDeathSound;
 
     private void Start()
     {
@@ -160,7 +164,7 @@ public class BossHealth : MonoBehaviour
         isDead = true;
         speed = 0f;
         animator.SetBool("IsDead", true);
-        audioManager.PlaySFX(audioManager.deathEnemy);
+        audioSource.PlayOneShot(bossDeathSound);
         StartCoroutine(HandleDeath());
     }
 

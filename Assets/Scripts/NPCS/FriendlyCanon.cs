@@ -13,13 +13,16 @@ public class FriendlyCanon : MonoBehaviour
     private float nextFireTime = 0f;
     private bool isFire = false;
     private bool firstTimeInRange = true; // Enemy ilk kez menzile girdi mi?
-    AudioManager audioManager;
+    AudioSource audioSource;
 
-    private void Awake()
+    public void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         
+
     }
+    
+    public AudioClip cannonSound;
 
     private void Start()
     {
@@ -99,7 +102,7 @@ public class FriendlyCanon : MonoBehaviour
     {
         if (canonBallPrefab != null && firePoint != null)
         {
-            audioManager.PlaySFX(audioManager.cannon);
+            audioSource.PlayOneShot(cannonSound);
             GameObject ball = Instantiate(canonBallPrefab, firePoint.position, Quaternion.identity);
             
             Vector2 direction = (targetPosition - (Vector2)firePoint.position).normalized;

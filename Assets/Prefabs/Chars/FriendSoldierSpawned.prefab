@@ -132,6 +132,7 @@ MonoBehaviour:
   damage: 10
   animator: {fileID: 9152707831780165758}
   speed: 5
+  swordFriend: {fileID: 8300000, guid: ebcbb664018f947728cb9b67468b0f48, type: 3}
 --- !u!114 &9152707831780165749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +148,7 @@ MonoBehaviour:
   maxHealth: 100
   healthBarPrefab: {fileID: 2578933278270904478, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
   healthBarOffset: {x: -3, y: 3, z: 0}
+  deathSound: {fileID: 8300000, guid: 794be7c4bd9e64c9bbb9776937807a9e, type: 3}
 --- !u!95 &9152707831780165758
 Animator:
   serializedVersion: 5

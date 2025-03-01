@@ -16,13 +16,20 @@ public class Boss : MonoBehaviour
     private bool isPlayerInRange;
     private bool canSpawnEnemies = true;
     
-    AudioManager audioManager;
+    AudioSource audioSource;
 
-    private void Awake()
+    public void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(bossBackground);
+
     }
+    
+    public AudioClip bossBackground;
+    public AudioClip bossScream;
+
+    
+    
 
     private void Start()
     {
@@ -54,6 +61,7 @@ public class Boss : MonoBehaviour
         {
             if (isPlayerInRange)
             {
+                audioSource.PlayOneShot(bossScream);
                 animator.SetBool("IsSummoning", true);
                 yield return new WaitForSeconds(1f);
                 animator.SetBool("IsSummoning", false);
@@ -68,7 +76,7 @@ public class Boss : MonoBehaviour
     }
     private void SpawnEnemy()
     {
-        audioManager.PlaySFX(audioManager.bossScream);
+        
         if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0) return;
 
         GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];

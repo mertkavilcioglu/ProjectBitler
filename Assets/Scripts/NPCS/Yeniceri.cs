@@ -13,13 +13,15 @@ public class Yeniceri : MonoBehaviour
     public float speed;
     private float lastAttackTime;
     private bool isAttacking = false;
-    AudioManager audioManager;
+    AudioSource audioSource;
 
-    private void Awake()
+    public void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        
+        audioSource = gameObject.GetComponent<AudioSource>();
+       
     }
+    
+    public AudioClip swordFriend;
 
     void Update()
     {
@@ -112,7 +114,8 @@ public class Yeniceri : MonoBehaviour
     void AttackEnemy()
     {
         if (currentTarget == null) return;
-        audioManager.PlaySFX(audioManager.swordFriend);
+        audioSource.PlayOneShot(swordFriend);
+
 
         Debug.Log("Yeniceri saldırıyor!");
         animator.SetBool("IsAttacking", true);

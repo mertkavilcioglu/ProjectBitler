@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - arrow: {fileID: 2112524275155514533, guid: 523ea010002bfe040b56d6242ec53ab7, type: 3}
   - arrowPos: {instanceID: 0}
+  - bow: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
