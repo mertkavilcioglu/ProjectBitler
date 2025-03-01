@@ -15,12 +15,16 @@ public class Gun : MonoBehaviour
     public float fireRate = 0.5f;   
     private float nextFireTime = 0f;
     private bool isShooting = false;
-    AudioManager audioManager;
+    AudioSource audioSource;
 
-    private void Awake()
+    public void Awake()
     {
-        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        
+
     }
+    
+    public AudioClip shooting;
     void Update()
     {
         
@@ -57,7 +61,7 @@ public class Gun : MonoBehaviour
     {
         if (isShooting == true)
         {
-            //audioManager.PlaySFX(audioManager.shooting);
+            audioSource.PlayOneShot(shooting);
             Instantiate(bullet, firePoint.position, transform.rotation);
         }
     }

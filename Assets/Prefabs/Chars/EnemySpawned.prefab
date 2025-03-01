@@ -107,6 +107,7 @@ MonoBehaviour:
   attackCooldown: 1
   damage: 10
   speed: 5
+  swordSound: {fileID: 8300000, guid: 72de2a353cacc46d3aad1d65f2599d2a, type: 3}
 --- !u!95 &3580624842914668211
 Animator:
   serializedVersion: 5
@@ -159,6 +160,7 @@ MonoBehaviour:
   maxHealth: 100
   healthBarPrefab: {fileID: 7532626518784278158}
   healthBarOffset: {x: -3, y: 3, z: 0}
+  deathSound: {fileID: 8300000, guid: b91c068f6d948481a8d5ac399d6c0420, type: 3}
 --- !u!1 &7532626518699035091
 GameObject:
   m_ObjectHideFlags: 0

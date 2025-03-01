@@ -18,12 +18,14 @@ public class MeleeEnemyMovement : MonoBehaviour
     private bool isAttacking = false;
     Animator animator;
     
-    AudioManager audioManager;
+    AudioSource audioSource;
 
-    private void Awake()
+    public void Awake()
     {
-        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
+    
+    public AudioClip swordSound;
 
     void Start()
     {
@@ -132,7 +134,7 @@ public class MeleeEnemyMovement : MonoBehaviour
     {
         animator.SetBool("IsAttacking", true);
         //Debug.Log($"Enemy saldırıyor: {currentTarget.name}!");
-        //audioManager.PlaySFX(audioManager.swordEnemy);
+        audioSource.PlayOneShot(swordSound);
 
         if (currentTarget == playerPos)
         {

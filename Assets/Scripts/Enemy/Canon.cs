@@ -18,8 +18,6 @@ public class Canon : MonoBehaviour
     public void Awake()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-        
-
     }
 
     public AudioClip cannon;

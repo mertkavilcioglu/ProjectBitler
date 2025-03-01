@@ -18,22 +18,19 @@ public class Boss : MonoBehaviour
     
     AudioSource audioSource;
 
-    public void Awake()
-    {
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.PlayOneShot(bossBackground);
-
-    }
-    
     public AudioClip bossBackground;
     public AudioClip bossScream;
 
-    
-    
+    public void Awake()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.loop = true; // Müziği döngüye al
+        audioSource.clip = bossBackground; // Ses kaynağına atama yap
+        audioSource.Play(); // Müziği başlat
+    }
 
     private void Start()
     {
-        
         if (animator == null)
         {
             animator = GetComponent<Animator>();
@@ -50,13 +47,10 @@ public class Boss : MonoBehaviour
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         isPlayerInRange = distanceToPlayer <= detectionRange;
-        
     }
 
     private IEnumerator SpawnEnemiesRoutine()
     {
-        
-
         while (canSpawnEnemies)
         {
             if (isPlayerInRange)
@@ -74,9 +68,9 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
+
     private void SpawnEnemy()
     {
-        
         if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0) return;
 
         GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
@@ -90,5 +84,4 @@ public class Boss : MonoBehaviour
             enemyMovement.BossSceneRange(newPlayerDetection: 25f);
         }
     }
-    
 }
