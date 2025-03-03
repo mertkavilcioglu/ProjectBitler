@@ -15,14 +15,16 @@ public class EnemyHealth : MonoBehaviour
 
     private HealthBar healthBarInstance;
     
-    AudioManager audioManager;
-
-    private void Awake()
+    AudioSource audioSource;
+    
+    public void Awake()
     {
-        animator = GetComponent<Animator>();
-        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();//yagiz???
     }
+    
+    public AudioClip deathSound;
 
     private void Start()
     {
@@ -76,7 +78,8 @@ public class EnemyHealth : MonoBehaviour
     {
         if (healthBarInstance != null)
         {
-            //audioManager.PlaySFX(audioManager.deathEnemy);
+            audioSource.clip = deathSound;
+            audioSource.Play();
             Destroy(healthBarInstance.gameObject);
         }
         StartCoroutine(HandleDeath());
@@ -84,7 +87,10 @@ public class EnemyHealth : MonoBehaviour
     }
     private IEnumerator HandleDeath()
     {
-        animator.SetBool("IsDead", true);
+        
+        animator.SetBool("IsDead", true);//ozge yapamamis?
+        audioSource.clip = deathSound;
+        audioSource.PlayOneShot(deathSound);
         yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
     }

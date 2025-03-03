@@ -509,6 +509,7 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 2578933279476605361}
   healthBarOffset: {x: -3, y: 3, z: 0}
   animator: {fileID: 4316213691594595360}
+  deathFriend: {fileID: 0}
 --- !u!114 &943567930
 MonoBehaviour:
   m_ObjectHideFlags: 0

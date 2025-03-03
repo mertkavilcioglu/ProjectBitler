@@ -108,7 +108,7 @@ MonoBehaviour:
   attackCooldown: 1
   damage: 10
   speed: 5
-  sword: {fileID: 8300000, guid: 72de2a353cacc46d3aad1d65f2599d2a, type: 3}
+  swordSound: {fileID: 8300000, guid: 72de2a353cacc46d3aad1d65f2599d2a, type: 3}
 --- !u!95 &3226967020029287400
 Animator:
   serializedVersion: 5
@@ -183,9 +183,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -218,7 +218,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -313,7 +313,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 160931298049011105, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc4991e4c6005b34998e6e4023a74ade, type: 3}
 --- !u!4 &8498804672985037780 stripped
 Transform:

@@ -9,12 +9,15 @@ public class ArcherShoot : MonoBehaviour
     private ArcherEnemy archerEnemy;
     private float timer;
     
-    AudioManager audioManager;
-
-    private void Awake()
+    AudioSource audioSource;
+    public void Awake()
     {
-        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+
     }
+    
+    public AudioClip bow;
+    
 
     void Start()
     {
@@ -53,7 +56,7 @@ public class ArcherShoot : MonoBehaviour
 
     void Shoot()
     {
-        //audioManager.PlaySFX(audioManager.bow);
+        audioSource.PlayOneShot(bow);
         Instantiate(arrow, arrowPos.position, Quaternion.identity);
     }
 }

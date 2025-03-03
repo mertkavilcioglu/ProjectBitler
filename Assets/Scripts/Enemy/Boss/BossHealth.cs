@@ -36,8 +36,6 @@ public class BossHealth : MonoBehaviour
     public void Awake()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-        
-
     }
     
     public AudioClip bossDeathSound;

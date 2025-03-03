@@ -19,6 +19,16 @@ public class PlayerHealth : MonoBehaviour
 
     private HealthBar healthBarInstance;
     public Animator animator;
+    
+    AudioSource audioSource;
+
+    public void Awake()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+        
+    }
+
+    public AudioClip deathFriend;
 
     private void Start()
     {
@@ -70,7 +80,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isDead)
         {
+            
             isDead = true;
+            audioSource.PlayOneShot(deathFriend); 
             animator.SetBool("IsDead", true);
             StartCoroutine(HandleDeath());
         }
