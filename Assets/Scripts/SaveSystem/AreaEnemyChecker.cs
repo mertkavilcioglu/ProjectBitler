@@ -16,17 +16,17 @@ public class AreaEnemyChecker : MonoBehaviour
         BoxCollider2D areaCollider = GetComponent<BoxCollider2D>();
         if (areaCollider == null)
         {
-            Debug.LogError($"Area {areaID}: No BoxCollider2D found!");
+            //Debug.LogError($"Area {areaID}: No BoxCollider2D found!");
             return;
         }
 
         Vector2 size = areaCollider.size * transform.localScale;
         Vector2 position = (Vector2)transform.position + areaCollider.offset;
 
-        Debug.Log($"Area {areaID}: Checking for enemies in area of size {size} at position {position}");
+        //Debug.Log($"Area {areaID}: Checking for enemies in area of size {size} at position {position}");
 
         Collider2D[] colliders = Physics2D.OverlapBoxAll(position, size, 0);
-        Debug.Log($"Area {areaID}: Found {colliders.Length} total colliders in area");
+        //Debug.Log($"Area {areaID}: Found {colliders.Length} total colliders in area");
 
         foreach (Collider2D collider in colliders)
         {

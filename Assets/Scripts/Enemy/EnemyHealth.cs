@@ -103,6 +103,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Debug.Log($"Enemy {gameObject.name} in completed area {areaID} - disabling");
             gameObject.SetActive(false);
+            healthBarInstance.gameObject.SetActive(false);
         }
     }
 }

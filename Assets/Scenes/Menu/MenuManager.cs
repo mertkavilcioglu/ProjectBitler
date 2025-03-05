@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
 
     public void NewGame()
     {
+        MissionManager.Instance.ResetAllMissionData();
         SceneManager.LoadScene("Map");
     }
     AudioManager audioManager;

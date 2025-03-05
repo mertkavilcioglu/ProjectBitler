@@ -60,11 +60,9 @@ public class MissionManager : MonoBehaviour
             mission3Text.color = new Color(mission3Text.color.r, mission3Text.color.g, mission3Text.color.b, 0.5f);
         }
 
-        // Load saved mission status
         LoadMissionStatus();
     }
 
-    // Called when a scene is loaded
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Scene loaded: " + scene.name);
@@ -73,13 +71,11 @@ public class MissionManager : MonoBehaviour
 
     void Update()
     {
-        // Check for completed missions and update
         CheckMissionStatus();
     }
 
     private void CheckMissionStatus()
     {
-        // Check Area 1 independently
         if (!mission1Completed && area1 != null && area1.IsAreaCleared())
         {
             MarkMissionCompleted1(mission1Text);
@@ -90,7 +86,6 @@ public class MissionManager : MonoBehaviour
             Debug.Log("Mission 1 completed! Area ID: " + area1.areaID);
         }
 
-        // Check Area 2 independently
         if (!mission2Completed && area2 != null && area2.IsAreaCleared())
         {
             MarkMissionCompleted2(mission2Text);
@@ -101,13 +96,11 @@ public class MissionManager : MonoBehaviour
             Debug.Log("Mission 2 completed! Area ID: " + area2.areaID);
         }
 
-        // Enable mission 3 if both mission 1 and 2 are completed
         if (mission1Completed && mission2Completed && !mission3Completed && mission3Text != null)
         {
             // Make mission 3 visible
             mission3Text.color = new Color(mission3Text.color.r, mission3Text.color.g, mission3Text.color.b, 1f);
 
-            // Check Area 3
             if (area3 != null && area3.IsAreaCleared())
             {
                 MarkMissionCompleted3(mission3Text);
@@ -148,10 +141,8 @@ public class MissionManager : MonoBehaviour
         }
     }
 
-    // Coroutine to disable enemies in completed areas after scene load
     private IEnumerator DisableEnemiesInCompletedAreas()
     {
-        // Wait to ensure all objects are fully initialized
         yield return new WaitForSeconds(0.1f);
 
         Debug.Log("Checking for enemies in completed areas. Completed areas: " + string.Join(", ", completedAreas.Keys));
@@ -163,27 +154,21 @@ public class MissionManager : MonoBehaviour
 
             if (isCompleted)
             {
-                Debug.Log("Processing completed area: " + areaID);
-
-                // Find the AreaEnemyChecker for this area
                 AreaEnemyChecker areaChecker = FindAreaByID(areaID);
 
                 if (areaChecker != null)
                 {
                     Debug.Log("Found area checker for area ID: " + areaID);
 
-                    // Get all enemies in this area
                     GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
                     int disabledCount = 0;
 
                     foreach (GameObject enemy in enemies)
                     {
-                        // Check if this enemy is within the area bounds
                         if (IsEnemyInArea(enemy, areaChecker))
                         {
                             enemy.SetActive(false);
                             disabledCount++;
-                            Debug.Log("Disabled enemy: " + enemy.name + " in completed area: " + areaID);
                         }
                     }
 
@@ -197,7 +182,6 @@ public class MissionManager : MonoBehaviour
         }
     }
 
-    // Helper method to check if an enemy is within an area
     private bool IsEnemyInArea(GameObject enemy, AreaEnemyChecker areaChecker)
     {
         BoxCollider2D areaCollider = areaChecker.GetComponent<BoxCollider2D>();
@@ -224,14 +208,12 @@ public class MissionManager : MonoBehaviour
                 point.y <= boxCenter.y + boxSize.y / 2);
     }
 
-    // Helper method to find an AreaEnemyChecker by its ID
     private AreaEnemyChecker FindAreaByID(int areaID)
     {
         if (area1 != null && area1.areaID == areaID) return area1;
         if (area2 != null && area2.areaID == areaID) return area2;
         if (area3 != null && area3.areaID == areaID) return area3;
 
-        // Look for any other areas in the scene
         AreaEnemyChecker[] allAreas = FindObjectsOfType<AreaEnemyChecker>();
         foreach (AreaEnemyChecker area in allAreas)
         {
@@ -242,7 +224,6 @@ public class MissionManager : MonoBehaviour
         return null;
     }
 
-    // Save mission completion status
     public void SaveMissionStatus()
     {
         PlayerPrefs.SetInt("Mission1Completed", mission1Completed ? 1 : 0);
@@ -250,11 +231,10 @@ public class MissionManager : MonoBehaviour
         PlayerPrefs.SetInt("Mission3Completed", mission3Completed ? 1 : 0);
         PlayerPrefs.SetInt("CompletedMissions", completedMissions);
 
-        // Save completed area IDs
         string completedAreasStr = "";
         foreach (var area in completedAreas)
         {
-            if (area.Value) // If the area is completed
+            if (area.Value)
             {
                 completedAreasStr += area.Key + ",";
             }
@@ -266,10 +246,9 @@ public class MissionManager : MonoBehaviour
         Debug.Log("Mission status saved: M1=" + mission1Completed +
                   ", M2=" + mission2Completed +
                   ", M3=" + mission3Completed +
-                  ", CompletedAreas=" + completedAreasStr);
+                  "CompletedAreas=" + completedAreasStr);
     }
 
-    // Load mission completion status
     public void LoadMissionStatus()
     {
         mission1Completed = PlayerPrefs.GetInt("Mission1Completed", 0) == 1;
@@ -277,7 +256,6 @@ public class MissionManager : MonoBehaviour
         mission3Completed = PlayerPrefs.GetInt("Mission3Completed", 0) == 1;
         completedMissions = PlayerPrefs.GetInt("CompletedMissions", 0);
 
-        // Load completed areas
         string completedAreasStr = PlayerPrefs.GetString("CompletedAreas", "");
         completedAreas.Clear();
 
@@ -297,9 +275,8 @@ public class MissionManager : MonoBehaviour
         Debug.Log("Mission status loaded: M1=" + mission1Completed +
                   ", M2=" + mission2Completed +
                   ", M3=" + mission3Completed +
-                  ", Completed areas: " + completedAreasStr);
+                  "Completed areas: " + completedAreasStr);
 
-        // Update UI based on loaded mission status
         if (mission1Completed && mission1Text != null)
         {
             MarkMissionCompleted1(mission1Text);
@@ -321,7 +298,6 @@ public class MissionManager : MonoBehaviour
         }
     }
 
-    // Method to check if an area is completed
     public bool IsAreaCompleted(int areaID)
     {
         return completedAreas.ContainsKey(areaID) && completedAreas[areaID];
