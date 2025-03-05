@@ -5,7 +5,7 @@ public class GameOverScreen : MonoBehaviour
 {
     public void Restart()
     {
-        SceneManager.LoadScene("Boss");
+        SceneManager.LoadScene("Map");
     }
 
     public void ReturnToMenu()

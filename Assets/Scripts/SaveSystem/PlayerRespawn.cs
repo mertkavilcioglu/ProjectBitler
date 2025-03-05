@@ -12,8 +12,8 @@ public class PlayerRespawn : MonoBehaviour
     {
         //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         playerHealth = GetComponent<PlayerHealth>();
-
     }
+
     void Start()
     {
         string currentScene = SceneManager.GetActiveScene().name;
@@ -27,12 +27,33 @@ public class PlayerRespawn : MonoBehaviour
             Debug.Log($"Player spawned at checkpoint: {transform.position}");
         }
     }
+
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.R))
         {
+            // Reset all data including mission data
             PlayerPrefs.DeleteAll();
-            Debug.Log("CHECKPOINT DATA RESET! Position will be default on next spawn.");
+
+            // Also reset mission manager data if it exists
+            if (MissionManager.Instance != null)
+            {
+                MissionManager.Instance.ResetAllMissionData();
+            }
+
+            Debug.Log("ALL DATA RESET! Position and mission progress will be default on next spawn.");
         }
+    }
+
+    // Call this method when the player dies
+    public void OnPlayerDeath()
+    {
+        // Make sure mission status is saved before respawning
+        if (MissionManager.Instance != null)
+        {
+            MissionManager.Instance.SaveMissionStatus();
+        }
+
+        // Your existing death/respawn code...
     }
 }

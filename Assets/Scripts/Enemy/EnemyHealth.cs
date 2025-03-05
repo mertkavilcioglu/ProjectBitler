@@ -4,6 +4,7 @@ using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public int areaID; //icinde oldugu area hangisiyse
 
     public int maxHealth = 100;
     private int currentHealth;
@@ -28,6 +29,8 @@ public class EnemyHealth : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(CheckMissionStatus());
+
         if (healthBarPrefab != null)
         {
             Canvas canvas = FindObjectOfType<Canvas>();
@@ -44,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Sahnede Canvas yog!");
+                Debug.LogWarning("Sahnede Canvas yok ki canim");
             }
         }
     }
@@ -65,8 +68,6 @@ public class EnemyHealth : MonoBehaviour
         {
             healthBarInstance.SetFillAmount(fillAmount);
         }
-
-        Debug.Log(gameObject.name + " " + damage + " vurdu gol oldu.");
 
         if (currentHealth <= 0)
         {
@@ -93,5 +94,15 @@ public class EnemyHealth : MonoBehaviour
         audioSource.PlayOneShot(deathSound);
         yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
+    }
+    private IEnumerator CheckMissionStatus()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        if (MissionManager.Instance != null && MissionManager.Instance.IsAreaCompleted(areaID))
+        {
+            Debug.Log($"Enemy {gameObject.name} in completed area {areaID} - disabling");
+            gameObject.SetActive(false);
+        }
     }
 }

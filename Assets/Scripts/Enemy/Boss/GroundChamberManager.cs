@@ -9,6 +9,7 @@ public class GroundChamberManager : MonoBehaviour
     [SerializeField] private float chamberLifetime = 5f;
     [SerializeField] private int maxChambers = 3;
     [SerializeField] private float chamberRadius = 2f;
+    [SerializeField] Material bloom;
 
     [Header("Spawn Area")]
     [SerializeField] private Vector2 areaSize = new Vector2(28f, 10f);
@@ -22,9 +23,11 @@ public class GroundChamberManager : MonoBehaviour
     [SerializeField] private RuntimeAnimatorController chamberAnimator;
     private bool isSpawning = false;
     private List<GameObject> activeChambers = new List<GameObject>();
+    private Transform playerPos;
 
     private void Start()
     {
+        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         if (bossHealth == null)
         {
             bossHealth = FindObjectOfType<BossHealth>();
@@ -42,7 +45,7 @@ public class GroundChamberManager : MonoBehaviour
 
         while (!spawningStarted)
         {
-            if (bossHealth.GetCurrentHealth() <= 500f)//////////////////////////////////////////////////////////////////////////
+            if (bossHealth.GetCurrentHealth() <= 990f)//////////////////////////////////////////////////////////////////////////
             {
                 StartSpawning();
                 spawningStarted = true;
@@ -84,7 +87,7 @@ public class GroundChamberManager : MonoBehaviour
             Random.Range(-areaSize.x / 2, areaSize.x / 2),
             Random.Range(-areaSize.y / 2, areaSize.y / 2)
         );
-        Vector2 spawnPos = (Vector2)transform.position + areaOffset + randomOffset;
+        Vector2 spawnPos = (Vector2)playerPos.transform.position + areaOffset + randomOffset;
 
         GameObject chamber = CreateChamber(spawnPos);
         activeChambers.Add(chamber);
@@ -98,6 +101,9 @@ public class GroundChamberManager : MonoBehaviour
         chamber.transform.position = position;
 
         SpriteRenderer renderer = chamber.AddComponent<SpriteRenderer>();
+        renderer.material = bloom;
+        renderer.material.SetTexture("_BaseMap", null);
+
         renderer.sortingOrder = -1;
 
         // Add Animator component and set the controller

@@ -37,11 +37,9 @@ public class MeleeEnemyMovement : MonoBehaviour
     {
         if (playerPos == null || playerPos.Equals(null))
         {
-            // Eğer oyuncu yok edilmişse, işlem yapma.
             return;
         }
 
-        // First check if player is in range (priority target)
         float distanceToPlayer = Vector2.Distance(transform.position, playerPos.position);
 
         if (distanceToPlayer <= playerDetectionRange)
@@ -50,7 +48,6 @@ public class MeleeEnemyMovement : MonoBehaviour
         }
         else
         {
-            // Player not in range, look for Yeniceri
             FindNearestYeniceri();
         }
 
@@ -66,9 +63,8 @@ public class MeleeEnemyMovement : MonoBehaviour
         {
             isAttacking = false;
 
-            // Calculate position on a circle around the target
-            float angle = Time.time * speed + transform.GetInstanceID(); // Unique for each unit
-            float circleRadius = attackRange + 0.5f; // Slightly larger than attack range
+            float angle = Time.time * speed + transform.GetInstanceID();
+            float circleRadius = attackRange + 0.5f;
             Vector2 offset = new Vector2(
                 Mathf.Cos(angle) * circleRadius,
                 Mathf.Sin(angle) * circleRadius
@@ -133,7 +129,6 @@ public class MeleeEnemyMovement : MonoBehaviour
     void AttackTarget()
     {
         animator.SetBool("IsAttacking", true);
-        //Debug.Log($"Enemy saldırıyor: {currentTarget.name}!");
         audioSource.PlayOneShot(swordSound);
 
         if (currentTarget == playerPos)

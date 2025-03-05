@@ -47,13 +47,6 @@ public class YeniceriHealth : MonoBehaviour
             }
         }
     }
-    void Update()
-    {
-        /*if (Freezer.Instance.IsGameFrozen)
-        {
-            return;
-        }*/
-    }
 
     public void TakeDamage(int damage)
     {
@@ -64,7 +57,6 @@ public class YeniceriHealth : MonoBehaviour
             healthBarInstance.SetFillAmount(fillAmount);
         }
 
-        Debug.Log(gameObject.name + " " + damage + " hasar aldı.");
 
         if (currentHealth <= 0)
         {
@@ -76,6 +68,7 @@ public class YeniceriHealth : MonoBehaviour
     {
         if (healthBarInstance != null)
         {
+            audioSource.clip = deathSound;
             audioSource.PlayOneShot(deathSound);
             Destroy(healthBarInstance.gameObject);
         }

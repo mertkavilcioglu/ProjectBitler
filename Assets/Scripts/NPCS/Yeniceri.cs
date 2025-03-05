@@ -25,11 +25,9 @@ public class Yeniceri : MonoBehaviour
 
     void Update()
     {
-        // Find nearest enemy if we don't have a target or current target is destroyed
         if (currentTarget == null)
         {
             FindNearestEnemy();
-            // Reset animation if no target found
             if (currentTarget == null)
             {
                 animator.SetBool("IsWalking", false);
@@ -41,15 +39,12 @@ public class Yeniceri : MonoBehaviour
 
         float distanceToEnemy = Vector2.Distance(transform.position, currentTarget.position);
 
-        // Check if enemy is within detection range
         if (distanceToEnemy > detectionRange)
         {
-            // Enemy too far, look for a closer one
             FindNearestEnemy();
             return;
         }
 
-        // Düşmana doğru dön
         FlipCharacter();
 
         if (distanceToEnemy > attackRange)
@@ -115,9 +110,6 @@ public class Yeniceri : MonoBehaviour
     {
         if (currentTarget == null) return;
         audioSource.PlayOneShot(swordFriend);
-
-
-        Debug.Log("Yeniceri saldırıyor!");
         animator.SetBool("IsAttacking", true);
 
         EnemyHealth enemyHealth = currentTarget.GetComponent<EnemyHealth>();
@@ -126,13 +118,11 @@ public class Yeniceri : MonoBehaviour
             enemyHealth.TakeDamage(damage);
         }
 
-        // Add this to reset the attack state
         StartCoroutine(ResetAttackState());
     }
 
     IEnumerator ResetAttackState()
     {
-        // Wait for attack animation to complete
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         animator.SetBool("IsAttacking", false);
         isAttacking = false;
