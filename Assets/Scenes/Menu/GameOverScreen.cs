@@ -5,7 +5,11 @@ public class GameOverScreen : MonoBehaviour
 {
     public void Restart()
     {
-        SceneManager.LoadScene("Map");
+        if (PlayerPrefs.HasKey("LastActiveScene"))
+        {
+            string levelToLoad = PlayerPrefs.GetString("LastActiveScene");
+            SceneManager.LoadScene(levelToLoad);
+        }
     }
 
     public void ReturnToMenu()

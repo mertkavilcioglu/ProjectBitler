@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private string newGameLevel;
+
     public void NewGame()
     {
-        SceneManager.LoadScene(newGameLevel);
+        SceneManager.LoadScene("Map");
     }
     AudioManager audioManager;
     
@@ -20,9 +20,9 @@ public class MenuManager : MonoBehaviour
     }
     public void LoadGame()
     {
-        if(PlayerPrefs.HasKey("LevelSaved"))
+        if(PlayerPrefs.HasKey("LastActiveScene"))
         {
-            string levelToLoad = PlayerPrefs.GetString("LevelSaved");
+            string levelToLoad = PlayerPrefs.GetString("LastActiveScene");
             SceneManager.LoadScene(levelToLoad);
         }
     }
