@@ -31,7 +31,7 @@ public class AreaEnemyChecker : MonoBehaviour
         foreach (Collider2D collider in colliders)
         {
             Debug.Log($"Area {areaID}: Found object: {collider.gameObject.name} with tag: {collider.gameObject.tag}");
-            if (collider.CompareTag("Enemy"))
+            if (collider.CompareTag("Enemy") || collider.CompareTag("Boss"))
             {
                 enemiesInArea.Add(collider.gameObject);
                 Debug.Log($"Area {areaID}: Added enemy: {collider.gameObject.name}");

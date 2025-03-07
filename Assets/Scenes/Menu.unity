@@ -782,6 +782,56 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!1 &411885251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 411885253}
+  - component: {fileID: 411885252}
+  m_Layer: 0
+  m_Name: MissionMan
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &411885252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411885251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1ce3fdd77c06d4ebf0401809c3bdf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mission1Text: {fileID: 0}
+  mission2Text: {fileID: 0}
+  mission3Text: {fileID: 0}
+  area1: {fileID: 0}
+  area2: {fileID: 0}
+  area3: {fileID: 0}
+--- !u!4 &411885253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411885251}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 494.37344, y: 247.05603, z: -1.4573869}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &416007335
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3b0a4243fd74d4ebb53c6f7b93b8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameLevel: Ayasofya_ic
 --- !u!1 &430816736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,6 +2007,7 @@ MonoBehaviour:
   bow: {fileID: 8300000, guid: 8fd2d73dfe9e846679cfdf508258512f, type: 3}
   swordFriend: {fileID: 8300000, guid: ebcbb664018f947728cb9b67468b0f48, type: 3}
   deathFriend: {fileID: 8300000, guid: 794be7c4bd9e64c9bbb9776937807a9e, type: 3}
+  bossScream: {fileID: 0}
 --- !u!4 &1003223653
 Transform:
   m_ObjectHideFlags: 0
@@ -3798,7 +3848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3b0a4243fd74d4ebb53c6f7b93b8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameLevel: 
 --- !u!114 &1555086198
 MonoBehaviour:
   m_ObjectHideFlags: 0
