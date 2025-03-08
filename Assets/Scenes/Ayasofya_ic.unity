@@ -766,6 +766,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 160931298445333646, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: d467f887dfb8e0b40a541c3a60b7ef08, type: 2}
     - target: {fileID: 492660552921086044, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -884,11 +888,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8066237004392531413, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}
       propertyPath: healthBarOffset.x
-      value: -6
+      value: -5.7
       objectReference: {fileID: 0}
     - target: {fileID: 8066237004392531413, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}
       propertyPath: healthBarOffset.y
-      value: 15.8
+      value: 15.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e0dc0a475afa9439ec735a3c30cc58, type: 3}

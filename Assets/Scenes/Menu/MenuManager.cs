@@ -5,10 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public void ResetAllMissionData()
+    {
+        PlayerPrefs.DeleteKey("Mission1Completed");
+        PlayerPrefs.DeleteKey("Mission2Completed");
+        PlayerPrefs.DeleteKey("Mission3Completed");
+        PlayerPrefs.DeleteKey("CompletedMissions");
+        PlayerPrefs.DeleteKey("CompletedAreas");
+        PlayerPrefs.DeleteKey("CheckpointX");
+        PlayerPrefs.DeleteKey("CheckpointY");
+        PlayerPrefs.DeleteKey("CheckpointZ");
+        PlayerPrefs.DeleteKey("LastCheckpoint");
+        PlayerPrefs.Save();
+
+        Debug.Log("All mission data has been reset");
+    }
 
     public void NewGame()
     {
-        MissionManager.Instance.ResetAllMissionData();
+        ResetAllMissionData();
         SceneManager.LoadScene("Map");
     }
     AudioManager audioManager;

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/YouDiedRetry.unity
     guid: 84ec6e6e072ea244a853b3a9471f9d36
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 01ce0bd1424247f479b2e338d74dcdea
   m_configObjects: {}

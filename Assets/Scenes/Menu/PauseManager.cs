@@ -8,11 +8,10 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     private void Awake()
     {
-        // Make sure pause menu canvas has a higher sorting order
         Canvas pauseMenuCanvas = pauseMenu.GetComponent<Canvas>();
         if (pauseMenuCanvas != null)
         {
-            pauseMenuCanvas.sortingOrder = 10; // Higher value than health bar
+            pauseMenuCanvas.sortingOrder = 10;
         }
     }
     public void Pause()
@@ -35,8 +34,8 @@ public class PauseManager : MonoBehaviour
 
     public void Restart()
     {
-        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
+
     }
 }

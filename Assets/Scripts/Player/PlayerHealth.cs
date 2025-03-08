@@ -16,7 +16,9 @@ public class PlayerHealth : MonoBehaviour
 
     private HealthBar healthBarInstance;
     public Animator animator;
-    
+    public string currentScene;
+
+
     AudioSource audioSource;
 
     public void Awake()
@@ -59,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
+        currentScene = SceneManager.GetActiveScene().name;
         PlayerPrefs.SetString("LastActiveScene", currentScene);
         PlayerPrefs.Save();
     }
