@@ -144,8 +144,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Constantine XI Palaiologos
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
+  m_sharedMaterial: {fileID: -4460932921388633817, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -514,7 +514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0082474, y: -9.5}
+  m_AnchoredPosition: {x: 0.0082474, y: -10}
   m_SizeDelta: {x: 542.36, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4925901198900309888
@@ -607,7 +607,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -170.79141}
+  m_AnchoredPosition: {x: 0, y: -195.8}
   m_SizeDelta: {x: 0, y: -341.593}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4925901199179144989

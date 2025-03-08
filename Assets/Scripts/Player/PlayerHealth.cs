@@ -18,7 +18,6 @@ public class PlayerHealth : MonoBehaviour
     public Animator animator;
     
     AudioSource audioSource;
-    //GameObject pauseMenu;
 
     public void Awake()
     {
@@ -37,7 +36,6 @@ public class PlayerHealth : MonoBehaviour
             if (canvas != null)
             {
                 GameObject hb = Instantiate(healthBarPrefab, canvas.transform);
-                // Set the health bar canvas to a lower sorting order
                 Canvas healthBarCanvas = hb.GetComponent<Canvas>();
                 if (healthBarCanvas != null)
                 {
@@ -64,11 +62,6 @@ public class PlayerHealth : MonoBehaviour
         string currentScene = SceneManager.GetActiveScene().name;
         PlayerPrefs.SetString("LastActiveScene", currentScene);
         PlayerPrefs.Save();
-
-        /*while(pauseMenu)
-        {
-            hb.SetActive(false);
-        }*/
     }
 
     public void TakeDamage(int damage)

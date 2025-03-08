@@ -48,6 +48,7 @@ MonoBehaviour:
   chamberLifetime: 5
   maxChambers: 3
   chamberRadius: 2.5
+  bloom: {fileID: 2100000, guid: 996e702b18be1e548b3f72d17bb82c96, type: 2}
   areaSize: {x: 10, y: 10}
   areaOffset: {x: 0, y: 0}
   bossHealth: {fileID: 0}

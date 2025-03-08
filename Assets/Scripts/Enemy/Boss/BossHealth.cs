@@ -170,6 +170,7 @@ public class BossHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(2.03f);
         Destroy(gameObject);
+        SceneManager.LoadScene("Credits");
     }
 
 }
