@@ -26,8 +26,8 @@ public class MenuManager : MonoBehaviour
         ResetAllMissionData();
         SceneManager.LoadScene("Map");
     }
-    AudioManager audioManager;
-    
+
+    AudioManager audioManager;    
 
     private void Awake()
     {

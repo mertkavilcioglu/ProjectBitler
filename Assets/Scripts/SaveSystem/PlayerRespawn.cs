@@ -25,19 +25,11 @@ public class PlayerRespawn : MonoBehaviour
             transform.position = new Vector3(x, y, z);
             Debug.Log($"Player spawned at checkpoint: {transform.position}");
         }
-        /*
+        /////////////////////////////////////////
         if (currentScene == "Ayasofya_ic" && playerHealth != null)
         {
-            playerHealth.healthBarOffset = new Vector3(-5f, 15f, 0f);
-
-            // Also store in PlayerPrefs in case the scene reloads
-            PlayerPrefs.SetFloat("HealthBarOffsetX", -5f);
-            PlayerPrefs.SetFloat("HealthBarOffsetY", 15f);
-            PlayerPrefs.SetFloat("HealthBarOffsetZ", 0f);
-            PlayerPrefs.Save();
-
-            Debug.Log($"Set health bar offset for {currentScene}: {playerHealth.healthBarOffset}");
-        }*/
+            playerHealth.healthBarOffset = new Vector3(-5.7f, 15.3f, 0f);
+        }
     }
     void Update()
     {
