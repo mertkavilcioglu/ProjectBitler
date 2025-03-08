@@ -85,28 +85,42 @@ public class PlayerHealth : MonoBehaviour
             Die();
         }
     }
-    
+
     private void Die()
     {
         if (!isDead)
         {
             isDead = true;
-            audioSource.PlayOneShot(deathFriend); 
+            audioSource.PlayOneShot(deathFriend);
+
+            // Disable player controls immediately
+            DisablePlayerControls();
+
             animator.SetBool("IsDead", true);
             StartCoroutine(HandleDeath());
         }
     }
-    
+
+    private void DisablePlayerControls()
+    {
+        var playerMovement = GetComponent<PlayerController>();
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+            rb.velocity = Vector2.zero;
+    }
+
     private IEnumerator HandleDeath()
     {
         yield return new WaitForSeconds(1f);
-        
+
         if (healthBarInstance != null)
         {
             Destroy(healthBarInstance.gameObject);
         }
-        
-        Destroy(gameObject);
+
         SceneManager.LoadScene("YouDiedRetry");
-    }    
+    }
 }

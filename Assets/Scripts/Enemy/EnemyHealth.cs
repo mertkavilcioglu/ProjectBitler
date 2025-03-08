@@ -123,16 +123,57 @@ public class EnemyHealth : MonoBehaviour
             SpawnBloodEffect();
         }
 
+        DisableEnemyBehavior();
+
+        if (animator != null)
+            animator.SetBool("IsDead", true);
+
         StartCoroutine(HandleDeath());
-        
     }
+
+    private void DisableEnemyBehavior()
+    {
+        var standardAI = GetComponent<MeleeEnemyMovement>();
+        if (standardAI != null)
+            standardAI.enabled = false;
+
+        var rangedAI = GetComponent<ArcherEnemy>();
+        if (rangedAI != null)
+            rangedAI.enabled = false;
+
+        var bossAI = GetComponent<Canon>();
+        if (bossAI != null)
+            bossAI.enabled = false;
+
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0;
+        }
+
+        var colliders = GetComponents<Collider2D>();
+        foreach (var collider in colliders)
+        {
+            collider.enabled = false;
+        }
+
+        var navAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (navAgent != null)
+        {
+            navAgent.isStopped = true;
+            navAgent.enabled = false;
+        }
+    }
+
     private IEnumerator HandleDeath()
     {
-        
-        animator.SetBool("IsDead", true);//ozge yapamamis?
-        audioSource.clip = deathSound;
+        animator.SetBool("IsDead", true);
+
         audioSource.PlayOneShot(deathSound);
+
         yield return new WaitForSeconds(0.8f);
+
         Destroy(gameObject);
     }
     private IEnumerator CheckMissionStatus()
@@ -143,7 +184,6 @@ public class EnemyHealth : MonoBehaviour
         {
             Debug.Log($"Enemy {gameObject.name} in completed area {areaID} - disabling");
             gameObject.SetActive(false);
-            //healthBarInstance.gameObject.SetActive(false);
         }
     }
 }

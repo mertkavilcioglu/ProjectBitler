@@ -36,6 +36,11 @@ public class PauseManager : MonoBehaviour
     public void Pause()
     {
         pauseMenu.SetActive(true);
+        Canvas healthBarCanvas = FindObjectOfType<PlayerHealth>()?.healthBarCanvas;
+        if (healthBarCanvas != null)
+        {
+            healthBarCanvas.gameObject.SetActive(false);
+        }
         Time.timeScale = 0;
         isPaused = true;
     }
@@ -48,6 +53,11 @@ public class PauseManager : MonoBehaviour
     public void Resume()
     {
         pauseMenu.SetActive(false);
+        Canvas healthBarCanvas = FindObjectOfType<PlayerHealth>()?.healthBarCanvas;
+        if (healthBarCanvas != null)
+        {
+            healthBarCanvas.gameObject.SetActive(true);
+        }
         Time.timeScale = 1;
         isPaused = false;
     }
