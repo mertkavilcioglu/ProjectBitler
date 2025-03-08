@@ -1296,6 +1296,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1562905230}
     - target: {fileID: 5582153918575841439, guid: 3c1bcbdbe9bce62418f77bd929869a0b, type: 3}
+      propertyPath: bloodEffectPrefab
+      value: 
+      objectReference: {fileID: 2233460141981208266, guid: 9b3b2a878c367864fb51bb47ce3af460, type: 3}
+    - target: {fileID: 5582153918575841439, guid: 3c1bcbdbe9bce62418f77bd929869a0b, type: 3}
       propertyPath: delayedHealthSlider
       value: 
       objectReference: {fileID: 1716616497}

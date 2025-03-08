@@ -11,6 +11,7 @@ public class BossHealth : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 1000;
     [SerializeField] private int currentHealth;
+    public GameObject bloodEffectPrefab;
 
     [Header("UI Elements")]
     [SerializeField] private Slider healthSlider;
@@ -32,6 +33,7 @@ public class BossHealth : MonoBehaviour
     private Transform player;
     Animator animator;
     AudioSource audioSource;
+    
 
     public void Awake()
     {
@@ -126,9 +128,42 @@ public class BossHealth : MonoBehaviour
     {
         delayedTimer = 0f;
         currentHealth = Mathf.Max(0, currentHealth - damage);
+        SpawnBloodEffect();
         if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+    private void SpawnBloodEffect()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+
+        Vector2 hitDirection = (transform.position - player.transform.position).normalized;
+
+        if (bloodEffectPrefab != null)
+        {
+            GameObject bloodEffect = Instantiate(bloodEffectPrefab, transform.position, Quaternion.identity);
+
+            ParticleSystem ps = bloodEffect.GetComponentInChildren<ParticleSystem>();
+            if (ps != null)
+            {
+                float angle = Mathf.Atan2(hitDirection.y, hitDirection.x) * Mathf.Rad2Deg;
+                bloodEffect.transform.rotation = Quaternion.Euler(0, 0, angle + 180);
+            }
+
+            Destroy(bloodEffect, 2f);
+        }
+        else
+        {
+            try
+            {
+                BloodEffect.SpawnBlood((Vector2)transform.position, hitDirection);
+            }
+            catch (System.Exception)
+            {
+                Debug.LogWarning("BloodEffect script not found or Resources/BloodEffect prefab missing. Please assign a bloodEffectPrefab in the Inspector.");
+            }
         }
     }
 
@@ -163,6 +198,10 @@ public class BossHealth : MonoBehaviour
         speed = 0f;
         animator.SetBool("IsDead", true);
         audioSource.PlayOneShot(bossDeathSound);
+        for (int i = 0; i < 3; i++)
+        {
+            SpawnBloodEffect();
+        }
         StartCoroutine(HandleDeath());
     }
 
