@@ -17,7 +17,9 @@ public class EnemyHealth : MonoBehaviour
     private HealthBar healthBarInstance;
     
     AudioSource audioSource;
-    
+
+    public GameObject bloodEffectPrefab;
+
     public void Awake()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
@@ -68,10 +70,51 @@ public class EnemyHealth : MonoBehaviour
         {
             healthBarInstance.SetFillAmount(fillAmount);
         }
+        SpawnBloodEffect();
 
         if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+    private void SpawnBloodEffect()
+    {
+        // Find the player to determine hit direction
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+
+        // Calculate direction from player to enemy (this will be the hit direction)
+        Vector2 hitDirection = (transform.position - player.transform.position).normalized;
+
+        // If we have a prefab, use it
+        if (bloodEffectPrefab != null)
+        {
+            GameObject bloodEffect = Instantiate(bloodEffectPrefab, transform.position, Quaternion.identity);
+
+            // If the blood effect has a particle system, adjust its rotation to spray away from hit direction
+            ParticleSystem ps = bloodEffect.GetComponentInChildren<ParticleSystem>();
+            if (ps != null)
+            {
+                // Calculate angle and rotate the effect
+                float angle = Mathf.Atan2(hitDirection.y, hitDirection.x) * Mathf.Rad2Deg;
+                bloodEffect.transform.rotation = Quaternion.Euler(0, 0, angle + 180);
+            }
+
+            // Destroy the effect after delay
+            Destroy(bloodEffect, 2f);
+        }
+        else
+        {
+            // Fallback to use the original BloodEffect script if you have it set up
+            // This uses the Resources folder method described earlier
+            try
+            {
+                BloodEffect.SpawnBlood((Vector2)transform.position, hitDirection);
+            }
+            catch (System.Exception)
+            {
+                Debug.LogWarning("BloodEffect script not found or Resources/BloodEffect prefab missing. Please assign a bloodEffectPrefab in the Inspector.");
+            }
         }
     }
 
@@ -83,6 +126,12 @@ public class EnemyHealth : MonoBehaviour
             audioSource.Play();
             Destroy(healthBarInstance.gameObject);
         }
+
+        for (int i = 0; i < 3; i++)
+        {
+            SpawnBloodEffect();
+        }
+
         StartCoroutine(HandleDeath());
         
     }

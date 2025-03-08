@@ -161,6 +161,7 @@ MonoBehaviour:
   maxHealth: 100
   healthBarPrefab: {fileID: 0}
   healthBarOffset: {x: -3, y: 3, z: 0}
+  bloodEffectPrefab: {fileID: 2233460141981208266, guid: 9b3b2a878c367864fb51bb47ce3af460, type: 3}
   deathSound: {fileID: 8300000, guid: b91c068f6d948481a8d5ac399d6c0420, type: 3}
 --- !u!82 &-334246943931859818
 AudioSource:
