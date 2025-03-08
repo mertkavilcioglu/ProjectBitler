@@ -136,8 +136,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21.672, y: -84.73}
-  m_SizeDelta: {x: 156.66, y: 22.5297}
+  m_AnchoredPosition: {x: -22.034, y: -84.73}
+  m_SizeDelta: {x: 120.2625, y: 22.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1126827393541812127
 CanvasRenderer:
@@ -167,10 +167,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ii. Protect the ships
+  m_text: ii. Capture the castle
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
+  m_sharedMaterial: {fileID: -4460932921388633817, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -271,8 +271,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21.6716, y: -62.2}
-  m_SizeDelta: {x: 156.6567, y: 22.5297}
+  m_AnchoredPosition: {x: -26.1, y: -62.2}
+  m_SizeDelta: {x: 112.1304, y: 22.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1126827393733941513
 CanvasRenderer:
@@ -302,10 +302,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: i. Capture the castle
+  m_text: i. Protect the ships
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
+  m_sharedMaterial: {fileID: -4460932921388633817, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -406,8 +406,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21.672, y: -107.26}
-  m_SizeDelta: {x: 156.66, y: 22.5297}
+  m_AnchoredPosition: {x: -14.965, y: -106.94}
+  m_SizeDelta: {x: 134.4, y: 21.8912}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1126827393845463438
 CanvasRenderer:
@@ -439,8 +439,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: iii. Capture Hagia Sophia
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
+  m_sharedMaterial: {fileID: -4460932921388633817, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -570,6 +570,10 @@ MonoBehaviour:
   mission1Text: {fileID: 1126827393733941514}
   mission2Text: {fileID: 1126827393541812120}
   mission3Text: {fileID: 1126827393845463439}
+  area1: {fileID: 0}
+  area2: {fileID: 0}
+  area3: {fileID: 0}
+  ayasofya: {fileID: 0}
 --- !u!1001 &1126827393917882989
 PrefabInstance:
   m_ObjectHideFlags: 0

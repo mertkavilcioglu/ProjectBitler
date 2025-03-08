@@ -37,6 +37,13 @@ public class PlayerHealth : MonoBehaviour
             if (canvas != null)
             {
                 GameObject hb = Instantiate(healthBarPrefab, canvas.transform);
+                // Set the health bar canvas to a lower sorting order
+                Canvas healthBarCanvas = hb.GetComponent<Canvas>();
+                if (healthBarCanvas != null)
+                {
+                    healthBarCanvas.sortingOrder = 1;
+                }
+
                 healthBarInstance = hb.GetComponent<HealthBar>();
                 if (healthBarInstance != null)
                 {

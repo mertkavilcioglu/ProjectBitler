@@ -17,12 +17,14 @@ public class MissionManager : MonoBehaviour
     public AreaEnemyChecker area2;
     public AreaEnemyChecker area3;
 
+    public GameObject ayasofya;
+
     // Dictionary to track which area IDs have been completed
     private Dictionary<int, bool> completedAreas = new Dictionary<int, bool>();
 
     private bool mission1Completed = false;
     private bool mission2Completed = false;
-    private bool mission3Completed = false;
+    private bool mission3Completed = false;    
 
     private int completedMissions = 0;
 
@@ -100,6 +102,7 @@ public class MissionManager : MonoBehaviour
         {
             // Make mission 3 visible
             mission3Text.color = new Color(mission3Text.color.r, mission3Text.color.g, mission3Text.color.b, 1f);
+            ayasofya.SetActive(false);//ilk2gorevi bitirmeden ayasofyaya giremesin diye
 
             if (area3 != null && area3.IsAreaCleared())
             {
