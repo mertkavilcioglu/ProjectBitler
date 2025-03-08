@@ -6,21 +6,19 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    [Tooltip("Oyuncunun maksimum can değeri (Inspector üzerinden değiştirilebilir).")]
     public int maxHealth = 100;
     private int currentHealth;
     private bool isDead = false;
 
     [Header("Health Bar UI")]
-    [Tooltip("Health bar prefab’ı (Border, Background, Fill içeren prefab).")]
     public GameObject healthBarPrefab;
-    [Tooltip("Health bar’ın oyuncuya göre ofseti (örneğin, (0, 1, 0))")]
     public Vector3 healthBarOffset;
 
     private HealthBar healthBarInstance;
     public Animator animator;
     
     AudioSource audioSource;
+    //GameObject pauseMenu;
 
     public void Awake()
     {
@@ -49,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Sahnede Canvas bulunamadı!");
+                Debug.LogWarning("Sahnede Canvas bulunamadi!");
             }
         }
     }
@@ -59,6 +57,11 @@ public class PlayerHealth : MonoBehaviour
         string currentScene = SceneManager.GetActiveScene().name;
         PlayerPrefs.SetString("LastActiveScene", currentScene);
         PlayerPrefs.Save();
+
+        /*while(pauseMenu)
+        {
+            hb.SetActive(false);
+        }*/
     }
 
     public void TakeDamage(int damage)

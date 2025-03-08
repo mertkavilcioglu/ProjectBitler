@@ -218,6 +218,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas(1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1126827393541812120, guid: 9b3c120e48d2d064aa53a17ed702f374, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
+    - target: {fileID: 1126827393541812120, guid: 9b3c120e48d2d064aa53a17ed702f374, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4460932921388633817, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
+    - target: {fileID: 1126827393733941514, guid: 9b3c120e48d2d064aa53a17ed702f374, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
+    - target: {fileID: 1126827393733941514, guid: 9b3c120e48d2d064aa53a17ed702f374, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4460932921388633817, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
+    - target: {fileID: 1126827393845463439, guid: 9b3c120e48d2d064aa53a17ed702f374, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
+    - target: {fileID: 1126827393845463439, guid: 9b3c120e48d2d064aa53a17ed702f374, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4460932921388633817, guid: bb052c1fa31a9924280a9d3f63c5322e, type: 2}
     - target: {fileID: 1126827393899002302, guid: 9b3c120e48d2d064aa53a17ed702f374, type: 3}
       propertyPath: area1
       value: 
