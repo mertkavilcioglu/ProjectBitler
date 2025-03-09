@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public int playerHealth = 3;
     void Start()
     {
-        
+        Cursor.visible = false;
     }
 
     void Update()

@@ -35,6 +35,7 @@ public class PauseManager : MonoBehaviour
     }
     public void Pause()
     {
+        Cursor.visible = true;
         pauseMenu.SetActive(true);
         Canvas healthBarCanvas = FindObjectOfType<PlayerHealth>()?.healthBarCanvas;
         if (healthBarCanvas != null)
@@ -60,6 +61,7 @@ public class PauseManager : MonoBehaviour
         }
         Time.timeScale = 1;
         isPaused = false;
+        Cursor.visible = false;
     }
     public void Restart()
     {
