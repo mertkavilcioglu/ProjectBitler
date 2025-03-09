@@ -24,9 +24,9 @@ public class Boss : MonoBehaviour
     public void Awake()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.loop = true; // Müziği döngüye al
-        audioSource.clip = bossBackground; // Ses kaynağına atama yap
-        audioSource.Play(); // Müziği başlat
+        audioSource.loop = true;
+        audioSource.clip = bossBackground;
+        audioSource.Play();
     }
 
     private void Start()
@@ -42,11 +42,20 @@ public class Boss : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
         if (player == null) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         isPlayerInRange = distanceToPlayer <= detectionRange;
+
+        if (player.position.x < transform.position.x)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
     }
 
     private IEnumerator SpawnEnemiesRoutine()

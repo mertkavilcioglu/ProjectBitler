@@ -144,7 +144,7 @@ MonoBehaviour:
   maxHealth: 100
   healthBarPrefab: {fileID: 0}
   healthBarOffset: {x: -3, y: 3, z: 0}
-  bloodEffectPrefab: {fileID: 2233460141981208266, guid: 9b3b2a878c367864fb51bb47ce3af460, type: 3}
+  bloodEffectPrefab: {fileID: 0}
   deathSound: {fileID: 0}
 --- !u!70 &6940966051056751965
 CapsuleCollider2D:
