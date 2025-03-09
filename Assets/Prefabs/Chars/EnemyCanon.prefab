@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canonBallPrefab: {fileID: 7328903155881952883, guid: d4bb29780bcf0df4ea19ff2ad0585cae, type: 3}
   firePoint: {fileID: 6940966051994430334}
-  fireRate: 2
+  fireRate: 4
   range: 25
   cannon: {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
 --- !u!114 &6940966051056751963
