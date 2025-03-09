@@ -113,7 +113,7 @@ public class MeleeEnemyMovement : MonoBehaviour
 
         foreach (GameObject yeniceri in yeniceris)
         {
-            if (yeniceri == null) continue; // Eğer nesne yoksa atla.
+            if (yeniceri == null) continue;
 
             float distance = Vector2.Distance(transform.position, yeniceri.transform.position);
             if (distance < nearestDistance && distance <= yeniceriDetectionRange)
