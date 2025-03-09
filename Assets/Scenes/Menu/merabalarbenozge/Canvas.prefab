@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1126827392933984930}
   - component: {fileID: 1126827392933984931}
   - component: {fileID: 1126827392933984956}
-  m_Layer: 5
+  m_Layer: 17
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 1126827393541812121}
   - component: {fileID: 1126827393541812127}
   - component: {fileID: 1126827393541812120}
-  m_Layer: 5
+  m_Layer: 17
   m_Name: MissionText_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 1126827393733941515}
   - component: {fileID: 1126827393733941513}
   - component: {fileID: 1126827393733941514}
-  m_Layer: 5
+  m_Layer: 17
   m_Name: MissionText_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 1126827393845463432}
   - component: {fileID: 1126827393845463438}
   - component: {fileID: 1126827393845463439}
-  m_Layer: 5
+  m_Layer: 17
   m_Name: MissionText_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 1126827393899002303}
   - component: {fileID: 1126827393899002301}
   - component: {fileID: 1126827393899002302}
-  m_Layer: 5
+  m_Layer: 17
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -581,9 +581,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1126827392933984929}
     m_Modifications:
+    - target: {fileID: 5770726086243423010, guid: 390d9b7dadb7e864ea6759c1ab3a8689, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770726086481929389, guid: 390d9b7dadb7e864ea6759c1ab3a8689, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770726087017370263, guid: 390d9b7dadb7e864ea6759c1ab3a8689, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 5770726087258363642, guid: 390d9b7dadb7e864ea6759c1ab3a8689, type: 3}
       propertyPath: m_Name
       value: CompassUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770726087258363642, guid: 390d9b7dadb7e864ea6759c1ab3a8689, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5770726087258363643, guid: 390d9b7dadb7e864ea6759c1ab3a8689, type: 3}
       propertyPath: m_Pivot.x
@@ -668,6 +684,14 @@ PrefabInstance:
     - target: {fileID: 5770726087258363643, guid: 390d9b7dadb7e864ea6759c1ab3a8689, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770726087955520873, guid: 390d9b7dadb7e864ea6759c1ab3a8689, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770726087983407517, guid: 390d9b7dadb7e864ea6759c1ab3a8689, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 390d9b7dadb7e864ea6759c1ab3a8689, type: 3}

@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
         
         if (currentScene == "Ayasofya_ic")
         {
-            healthBarOffset = new Vector3(-5.7f, 15.3f, 0f);
+            healthBarOffset = new Vector3(-6f, 16f, 0f);
         }
         
         CreateHealthBar();

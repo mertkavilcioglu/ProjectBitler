@@ -6,8 +6,8 @@ public class Boss : MonoBehaviour
     [Header("Enemy Spawning")]
     [SerializeField] private GameObject[] enemyPrefabs;    // Array of enemy prefabs to spawn
     [SerializeField] private Transform[] spawnPoints;      // Array of spawn points around the boss
-    [SerializeField] private float spawnInterval;
-    [SerializeField] private int enemiesPerWave = 3;
+    [SerializeField] public float spawnInterval;
+    [SerializeField] public int enemiesPerWave = 3;
 
     [SerializeField] private float detectionRange;
 

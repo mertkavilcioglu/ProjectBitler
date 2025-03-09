@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db62daa40216e4b44bcd4348ee425e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaID: 0
+  areaID: 1
   maxHealth: 100
   healthBarPrefab: {fileID: 0}
   healthBarOffset: {x: -3, y: 3, z: 0}

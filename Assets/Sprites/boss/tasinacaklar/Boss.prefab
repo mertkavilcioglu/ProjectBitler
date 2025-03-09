@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5582153918383174259
 Transform:
   m_ObjectHideFlags: 0
@@ -266,6 +266,7 @@ MonoBehaviour:
   speed: 1
   maxHealth: 1000
   currentHealth: 1000
+  bloodEffectPrefab: {fileID: 2233460141981208266, guid: 9b3b2a878c367864fb51bb47ce3af460, type: 3}
   healthSlider: {fileID: 0}
   delayedHealthSlider: {fileID: 0}
   bossNameText: {fileID: 0}
@@ -332,7 +333,7 @@ AudioSource:
   m_GameObject: {fileID: 5582153918575841411}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: d467f887dfb8e0b40a541c3a60b7ef08, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.4
